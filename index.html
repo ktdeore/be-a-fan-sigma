@@ -8,17 +8,23 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Poppins, Cinzel, Montserrat, Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
         :root {
             --primary: #FF5500;
             --primary-hover: #E04B00;
             --bg-color: #0a0a0a;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -26,10 +32,13 @@
             background-color: var(--bg-color);
             color: #E2E8F0;
             margin: 0;
+            padding: 0;
             min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
         /* Ambient Background */
@@ -40,65 +49,67 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            filter: brightness(0.2) contrast(1.2) blur(1px);
+            filter: brightness(0.22) contrast(1.15) blur(1px);
             z-index: -4;
         }
         
         .vignette {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.95) 100%);
+            background: radial-gradient(circle, transparent 45%, rgba(0,0,0,0.95) 100%);
             pointer-events: none;
             z-index: -3;
         }
 
-        /* Halloween SVG decorations */
+        /* Subtle Halloween Spiderweb SVG decorations */
         .web-corner {
-            position: fixed; top: -20px; width: 250px; opacity: 0.15; pointer-events: none; z-index: -2;
+            position: fixed;
+            top: 0;
+            width: 220px;
+            opacity: 0.14;
+            pointer-events: none;
+            z-index: -2;
         }
-        .web-left { left: -20px; transform: scaleX(-1); }
-        .web-right { right: -20px; }
+        .web-left { left: 0; transform: scaleX(-1); }
+        .web-right { right: 0; }
 
         /* Premium Glassmorphism */
         .glass {
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(15, 23, 42, 0.55);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
             border-radius: 1.5rem;
         }
         
         .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.07);
             border-radius: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
 
         /* Views */
         .app-view {
             display: none;
-            opacity: 0;
-            transform: scale(0.98) translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            width: 100%;
         }
         .app-view.active {
             display: flex;
-            opacity: 1;
-            transform: scale(1) translateY(0);
+            animation: fadeIn 0.35s ease forwards;
         }
 
         /* Main Tabs */
         .tab-section {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.35s ease;
         }
         .tab-section.active {
             display: block;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -106,19 +117,19 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--primary) 0%, #D84315 100%);
             color: white;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             cursor: pointer;
         }
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px -5px rgba(255, 85, 0, 0.6);
         }
         .input-glass {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             color: white;
-            transition: border-color 0.3s;
+            transition: border-color 0.25s;
         }
         .input-glass:focus {
             outline: none;
@@ -130,33 +141,34 @@
             background: linear-gradient(90deg, #FF5500 0%, #8E24AA 100%);
             color: white;
             text-align: center;
-            padding: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            padding: 0.55rem 1rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            z-index: 50;
-            position: relative;
+            z-index: 45;
+            width: 100%;
         }
 
         /* Navigation */
         .nav-item {
             position: relative;
             color: #94A3B8;
-            transition: color 0.3s;
+            transition: all 0.25s;
             cursor: pointer;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.9rem;
             font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: 0.6rem;
         }
         .nav-item:hover, .nav-item.active {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.06);
         }
         .nav-item.active::after {
             content: '';
             position: absolute;
-            bottom: -2px; left: 10%; width: 80%; height: 2px;
+            bottom: -2px; left: 15%; width: 70%; height: 2px;
             background-color: var(--primary);
             border-radius: 2px;
         }
@@ -167,23 +179,28 @@
         ::-webkit-scrollbar-thumb { background: rgba(255, 85, 0, 0.5); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255, 85, 0, 0.8); }
 
-        /* Marquee Animation (Exactly 10 seconds) */
+        /* Seamless 10s Staff Marquee Animation */
         .marquee-wrapper {
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
-            box-sizing: border-box;
         }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 10s linear infinite;
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 10s linear infinite;
         }
-        .marquee-content span {
-            display: inline-block;
-            padding-right: 50px; /* Gap between repetitions */
+        .marquee-track:hover {
+            animation-play-state: paused;
         }
-        @keyframes marquee {
+        .marquee-group {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            padding-right: 2.5rem;
+        }
+        @keyframes marqueeScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
@@ -192,32 +209,36 @@
 <body>
 
     <!-- Toast Notifications Container -->
-    <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col items-end pointer-events-none w-full max-w-xs"></div>
+    <div id="toast-container" class="fixed top-4 right-4 z-[300] flex flex-col items-end pointer-events-none w-full max-w-xs"></div>
 
     <!-- Custom Confirm Modal -->
-    <div id="custom-confirm-modal" class="fixed inset-0 bg-black/90 z-[110] hidden items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+    <div id="custom-confirm-modal" class="fixed inset-0 bg-black/90 z-[250] hidden items-center justify-center p-4 backdrop-blur-sm transition-opacity">
         <div class="glass max-w-sm w-full p-8 text-center border-t-4 border-orange-500 shadow-2xl">
             <i class="ph-fill ph-question text-5xl text-orange-500 mb-4 block drop-shadow-md"></i>
             <h3 class="text-xl font-bold mb-2">Confirm Action</h3>
             <p id="confirm-msg" class="text-gray-400 text-sm mb-6">Are you sure you want to do this?</p>
             <div class="flex gap-3">
-                <button onclick="closeConfirm()" class="flex-1 py-3 glass-panel hover:bg-white/10 rounded-xl text-sm font-bold transition">Cancel</button>
-                <button id="confirm-yes-btn" class="flex-1 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-xl text-sm font-bold transition shadow-[0_0_15px_rgba(255,85,0,0.3)]">Yes, I'm sure</button>
+                <button onclick="closeConfirm()" class="flex-1 py-3 glass-panel hover:bg-white/10 rounded-xl text-sm font-bold transition cursor-pointer">Cancel</button>
+                <button id="confirm-yes-btn" class="flex-1 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-xl text-sm font-bold transition shadow-[0_0_15px_rgba(255,85,0,0.3)] cursor-pointer">Yes, I'm sure</button>
             </div>
         </div>
     </div>
 
     <!-- Forgot PIN Modal -->
-    <div id="forgot-pin-modal" class="fixed inset-0 bg-black/90 z-[130] hidden items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+    <div id="forgot-pin-modal" class="fixed inset-0 bg-black/90 z-[250] hidden items-center justify-center p-4 backdrop-blur-sm transition-opacity">
         <div class="glass max-w-sm w-full p-8 text-center border-t-4 border-blue-500 shadow-2xl">
             <i class="ph-fill ph-headset text-5xl text-blue-500 mb-4 block drop-shadow-md"></i>
             <h3 class="text-xl font-bold mb-2">Support Contact</h3>
-            <p class="text-gray-400 text-sm mb-4">Please reach out to support to reset your PIN.</p>
-            <div class="bg-black/40 rounded-lg p-3 mb-4 text-left border border-white/5">
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Discord</p>
-                <p class="text-white text-sm mb-2">assassins_fox</p>
-                <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Email</p>
-                <p class="text-white text-sm">kt.deore@hotmail.com</p>
+            <p class="text-gray-400 text-sm mb-4">For forgot PIN, any issues, or suggestions, please reach out to us:</p>
+            <div class="bg-black/40 rounded-lg p-4 mb-5 text-left border border-white/5 space-y-3">
+                <div>
+                    <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Discord ID</p>
+                    <p class="text-white font-semibold text-sm">assassins_fox</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Email Support</p>
+                    <p class="text-white font-semibold text-sm">kt.deore@hotmail.com</p>
+                </div>
             </div>
             <button onclick="document.getElementById('forgot-pin-modal').classList.add('hidden'); document.getElementById('forgot-pin-modal').classList.remove('flex')" class="w-full py-3 glass-panel hover:bg-white/10 text-white rounded-xl text-sm font-bold transition cursor-pointer">Close</button>
         </div>
@@ -230,30 +251,35 @@
     <svg class="web-corner web-left" viewBox="0 0 512 512" fill="#fff"><path d="M472,33.5c-37.1-5.1-71-21-98.8-44.5L343.3,20C381.7,50.7,429.2,69,480,69v32c-61.9,0-118-24.8-158.8-65.1L299,65 c48.5,47.8,115.1,77,189,77V174c-81.8,0-155.8-33.1-209.6-86.8l-22.3,22.8c60,59,141.5,96,231.9,96V242 c-102.5,0-195-41.5-262.1-108.6l-22.6,22.6c73,73.1,173.8,118,284.7,118v32c-122.9,0-234.1-49.8-314.9-130.6l-22.6,22.6 c86.9,86.9,207.2,140,339.5,140v31.7c-264.4,0-480-213.9-480-476.3h32c0,246,198,444.3,446,444.3V33.5z"/></svg>
     <svg class="web-corner web-right" viewBox="0 0 512 512" fill="#fff"><path d="M472,33.5c-37.1-5.1-71-21-98.8-44.5L343.3,20C381.7,50.7,429.2,69,480,69v32c-61.9,0-118-24.8-158.8-65.1L299,65 c48.5,47.8,115.1,77,189,77V174c-81.8,0-155.8-33.1-209.6-86.8l-22.3,22.8c60,59,141.5,96,231.9,96V242 c-102.5,0-195-41.5-262.1-108.6l-22.6,22.6c73,73.1,173.8,118,284.7,118v32c-122.9,0-234.1-49.8-314.9-130.6l-22.6,22.6 c86.9,86.9,207.2,140,339.5,140v31.7c-264.4,0-480-213.9-480-476.3h32c0,246,198,444.3,446,444.3V33.5z"/></svg>
 
-    <!-- 1. ENTRY MODAL (Dedicated Layer, no class conflicts) -->
-    <div id="view-entry" class="fixed inset-0 z-[200] flex items-center justify-center p-4 backdrop-blur-md bg-black/80 transition-opacity duration-500">
-        <div class="glass max-w-xl w-full p-8 md:p-12 text-center border-t-4 border-orange-500 shadow-[0_0_40px_rgba(255,85,0,0.2)] relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-50"></div>
-            <i class="ph-fill ph-music-notes text-6xl text-orange-500 mb-6 drop-shadow-[0_0_15px_rgba(255,85,0,0.5)]"></i>
-            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white tracking-wide">Be a Fan!</h1>
-            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-medium border-b border-white/10 pb-6">
-                <strong>Disclaimer:</strong> This is an unofficial, non-profit fan-made project. There is no official Sigma SMP staff involvement, and no monetary system or transactions are involved.
+    <!-- 1. PERMANENT DISCLAIMER & AUDIO ENTRY MODAL -->
+    <div id="view-entry" class="fixed inset-0 z-[200] flex items-center justify-center p-4 backdrop-blur-md bg-black/85 transition-opacity duration-300">
+        <div class="glass max-w-xl w-full p-8 md:p-10 text-center border-t-4 border-orange-500 shadow-[0_0_40px_rgba(255,85,0,0.25)] relative overflow-hidden">
+            <img src="logosigma.png" alt="Sigma SMP" class="h-20 mx-auto mb-4 object-contain drop-shadow-lg" onerror="this.style.display='none'">
+            <h1 class="text-2xl md:text-3xl font-extrabold mb-4 text-white tracking-wide">Official Fan Disclaimer</h1>
+            <div class="bg-black/40 border border-white/10 rounded-xl p-4 mb-6 text-left space-y-2">
+                <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
+                    <strong>Unofficial Fan Project:</strong> Welcome to <em>Sigma SMP - Be a Fan!</em> This website is a strictly non-profit, fan-made community project created with love by <strong>KtGamers</strong>.
+                </p>
+                <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
+                    <strong>No Official Staff Involvement & Non-Commercial:</strong> The original Sigma SMP staff has no involvement in the development or operation of this website, and no money, payments, or financial transactions are involved in any form.
+                </p>
+            </div>
+            <p class="text-gray-400 text-xs md:text-sm mb-6 flex items-center justify-center gap-2">
+                <i class="ph-fill ph-music-notes text-orange-500 text-lg"></i>
+                Clicking below will start the haunted Halloween background music and enter the platform.
             </p>
-            <p class="text-gray-400 text-xs md:text-sm mb-10">
-                This platform features an atmospheric background soundtrack. Click below to accept the disclaimer, allow audio, and enter the platform.
-            </p>
-            <button onclick="enterExperience()" class="btn-primary w-full py-4 rounded-xl font-bold text-lg uppercase tracking-wider shadow-[0_0_20px_rgba(255,85,0,0.4)] relative z-50 cursor-pointer">
-                ACCEPT & ENTER
+            <button id="btn-accept-entry" onclick="enterExperience()" class="btn-primary w-full py-4 rounded-xl font-bold text-base md:text-lg uppercase tracking-wider shadow-[0_0_20px_rgba(255,85,0,0.4)] cursor-pointer">
+                Accept & Enter
             </button>
         </div>
     </div>
 
     <!-- 2. LOGIN VIEW -->
     <div id="view-login" class="app-view flex-col items-center justify-center flex-grow p-4 min-h-screen">
-        <img src="logosigma.png" alt="Sigma Logo" class="h-32 mb-8 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+        <img src="logosigma.png" alt="Sigma Logo" class="h-28 md:h-32 mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]" onerror="this.style.display='none'">
         <div class="glass w-full max-w-md p-8 md:p-10 text-center">
             <h2 class="text-2xl font-bold mb-2">Fan Authentication</h2>
-            <p class="text-gray-400 text-sm mb-8">Enter your Discord ID to save your progress.</p>
+            <p class="text-gray-400 text-sm mb-6">Enter your Discord ID & 4-digit PIN to login or create an account.</p>
             
             <div class="space-y-4 text-left mb-6">
                 <div>
@@ -267,132 +293,141 @@
                     <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">4-Digit PIN</label>
                     <div class="relative">
                         <i class="ph-fill ph-lock-key absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
-                        <input type="password" id="login-pin" class="input-glass w-full rounded-xl py-3 pl-10 pr-4 tracking-widest" placeholder="••••" maxlength="4">
+                        <input type="password" id="login-pin" class="input-glass w-full rounded-xl py-3 pl-10 pr-4 tracking-widest" placeholder="••••" maxlength="4" inputmode="numeric">
                     </div>
                 </div>
-                <div class="flex items-center justify-between mt-2">
-                    <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-400 hover:text-white transition">
+                <div class="flex items-center justify-between pt-1">
+                    <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-300 hover:text-white transition">
                         <input type="checkbox" id="login-notify" class="rounded accent-orange-500 w-4 h-4 cursor-pointer"> 
                         Notify Me on sunday of quiz
                     </label>
                 </div>
             </div>
 
-            <button onclick="handleLogin()" class="btn-primary w-full py-3 rounded-xl font-bold mb-4 flex justify-center items-center gap-2">
+            <button onclick="handleLogin()" class="btn-primary w-full py-3.5 rounded-xl font-bold mb-4 flex justify-center items-center gap-2">
                 <span id="login-btn-text">Authenticate</span> <i class="ph-bold ph-arrow-right"></i>
             </button>
 
-            <button onclick="document.getElementById('forgot-pin-modal').classList.remove('hidden'); document.getElementById('forgot-pin-modal').classList.add('flex')" class="text-sm text-gray-400 hover:text-orange-400 transition mb-6">
+            <button onclick="document.getElementById('forgot-pin-modal').classList.remove('hidden'); document.getElementById('forgot-pin-modal').classList.add('flex')" class="text-sm text-gray-400 hover:text-orange-400 transition mb-6 cursor-pointer underline">
                 Forgot PIN? Contact Support
             </button>
 
-            <div class="bg-orange-500/10 border border-orange-500/20 rounded-lg p-4 text-sm text-orange-200">
+            <div class="bg-orange-500/10 border border-orange-500/20 rounded-xl p-4 text-sm text-orange-200">
                 <i class="ph-fill ph-gift mb-1 text-orange-500 text-xl"></i>
-                <p>Keep solving questions!<br><strong class="text-orange-400">Rewards will be given in S12.</strong></p>
+                <p>You will get rewards in S12, so keep solving questions!</p>
             </div>
         </div>
     </div>
 
-    <!-- 3. MAIN DASHBOARD VIEW -->
-    <div id="view-dashboard" class="app-view flex-col w-full min-h-screen">
-        <div class="top-banner">
-            <i class="ph-fill ph-sparkle"></i> EVERY SUNDAY 12 QUIZ <i class="ph-fill ph-sparkle"></i>
-        </div>
+    <!-- 3. MAIN DASHBOARD VIEW (Fixed Header so Navbar is NEVER clipped) -->
+    <div id="view-dashboard" class="app-view flex-col w-full min-h-screen justify-between">
+        <!-- Top Header Wrapper -->
+        <header class="w-full sticky top-0 z-40 bg-black/50 backdrop-blur-md border-b border-white/5 pb-3">
+            <div class="top-banner">
+                <i class="ph-fill ph-sparkle"></i> EVERY SUNDAY 12 QUIZ <i class="ph-fill ph-sparkle"></i>
+            </div>
 
-        <nav class="glass mx-4 sm:mx-8 mt-6 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4 rounded-2xl z-40 relative">
-            <div class="flex items-center gap-3">
-                <img src="logosigma.png" alt="Sigma SMP" class="h-10 object-contain drop-shadow-lg">
-                <div class="h-8 w-px bg-white/20 hidden md:block"></div>
-                <div class="hidden md:flex flex-col text-left">
-                    <span class="text-xs text-gray-400 font-medium">Logged in as</span>
-                    <span id="nav-user-id" class="text-sm font-bold text-orange-400 truncate max-w-[120px]">User</span>
+            <nav class="glass max-w-7xl mx-4 lg:mx-auto mt-3 px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3 rounded-2xl">
+                <div class="flex items-center gap-3">
+                    <img src="logosigma.png" alt="Sigma SMP" class="h-9 sm:h-10 object-contain drop-shadow-lg" onerror="this.style.display='none'">
+                    <div class="h-7 w-px bg-white/20 hidden sm:block"></div>
+                    <div class="flex flex-col text-left">
+                        <span class="text-[11px] text-gray-400 font-medium leading-tight">Logged in as</span>
+                        <span id="nav-user-id" class="text-xs sm:text-sm font-bold text-orange-400 truncate max-w-[140px]">User</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="flex flex-wrap justify-center gap-2 md:gap-6">
-                <button onclick="switchTab('home')" class="nav-item active" data-tab="home"><i class="ph ph-house mr-1"></i> Home</button>
-                <button onclick="switchTab('quiz')" class="nav-item" data-tab="quiz"><i class="ph ph-brain mr-1"></i> Quiz</button>
-                <button onclick="switchTab('cert')" class="nav-item" data-tab="cert"><i class="ph ph-scroll mr-1"></i> Quests</button>
-                <button onclick="switchTab('giveaway')" class="nav-item" data-tab="giveaway"><i class="ph ph-gift mr-1"></i> Giveaway</button>
-                <button onclick="switchTab('about')" class="nav-item" data-tab="about"><i class="ph ph-users mr-1"></i> About Us</button>
-                <button onclick="switchTab('support')" class="nav-item" data-tab="support"><i class="ph ph-lifebuoy mr-1"></i> Support</button>
-            </div>
+                
+                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 order-3 lg:order-2 w-full lg:w-auto border-t border-white/5 lg:border-none pt-2 lg:pt-0">
+                    <button onclick="switchTab('home')" class="nav-item active" data-tab="home"><i class="ph ph-house mr-1"></i> Home</button>
+                    <button onclick="switchTab('quiz')" class="nav-item" data-tab="quiz"><i class="ph ph-brain mr-1"></i> Quiz</button>
+                    <button onclick="switchTab('cert')" class="nav-item" data-tab="cert"><i class="ph ph-scroll mr-1"></i> Quests</button>
+                    <button onclick="switchTab('giveaway')" class="nav-item" data-tab="giveaway"><i class="ph ph-gift mr-1"></i> Giveaway</button>
+                    <button onclick="switchTab('about')" class="nav-item" data-tab="about"><i class="ph ph-users mr-1"></i> About Us</button>
+                    <button onclick="switchTab('support')" class="nav-item" data-tab="support"><i class="ph ph-lifebuoy mr-1"></i> Support</button>
+                </div>
 
-            <button onclick="logout()" class="text-gray-400 hover:text-red-400 transition flex items-center gap-2 text-sm font-medium">
-                <i class="ph ph-sign-out"></i> <span class="hidden md:inline">Logout</span>
-            </button>
-        </nav>
+                <button onclick="logout()" class="text-gray-300 hover:text-red-400 transition flex items-center gap-1.5 text-xs sm:text-sm font-medium order-2 lg:order-3 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer">
+                    <i class="ph ph-sign-out text-base"></i> <span>Logout</span>
+                </button>
+            </nav>
+        </header>
 
-        <main class="flex-grow flex flex-col w-full max-w-7xl mx-auto px-4 sm:px-8 py-8 relative z-10">
+        <main class="flex-grow flex flex-col w-full max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-8 relative z-10">
 
             <!-- HOME TAB -->
             <div id="tab-home" class="tab-section active w-full max-w-4xl mx-auto text-center">
-                <div class="glass p-6 md:p-16 rounded-3xl flex flex-col items-center justify-center min-h-[60vh] relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,85,0,0.15)_0%,transparent_70%)] pointer-events-none"></div>
-                    <img src="logosigma.png" alt="Sigma SMP" class="h-32 md:h-56 mb-6 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] animate-pulse" onerror="this.style.display='none'">
-                    <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500 mb-6 tracking-widest uppercase drop-shadow-lg">Be a Fan!</h1>
+                <div class="glass p-6 sm:p-10 md:p-14 rounded-3xl flex flex-col items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,85,0,0.14)_0%,transparent_70%)] pointer-events-none"></div>
+                    <img src="logosigma.png" alt="Sigma SMP" class="h-28 sm:h-40 md:h-48 mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] object-contain" onerror="this.style.display='none'">
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500 mb-5 tracking-widest uppercase drop-shadow-lg">Be a Fan!</h1>
                     
-                    <div class="bg-black/40 border border-orange-500/30 px-6 py-3 rounded-full inline-flex items-center gap-3 shadow-lg mb-4">
+                    <div class="bg-black/40 border border-orange-500/30 px-5 py-2.5 rounded-full inline-flex items-center gap-2.5 shadow-lg mb-5">
                         <i class="ph-fill ph-sparkle text-orange-500"></i>
-                        <p class="text-sm md:text-xl text-gray-200 font-bold tracking-wider uppercase">Every sunday 12 quiz</p>
+                        <p class="text-xs sm:text-base md:text-lg text-gray-200 font-bold tracking-wider uppercase">Every sunday 12 quiz</p>
                         <i class="ph-fill ph-sparkle text-orange-500"></i>
                     </div>
 
                     <!-- S12 Coming Soon -->
-                    <div class="mb-8">
-                        <h3 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">S12 Coming Soon</h3>
-                        <p class="text-xs md:text-sm text-gray-400 mt-1">Countdown will start here on official date</p>
+                    <div class="mb-6 bg-black/30 border border-white/5 px-6 py-4 rounded-2xl">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">S12 Coming Soon</h3>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1">Countdown will start here on official date</p>
                     </div>
 
-                    <p class="text-sm md:text-base text-gray-400 font-medium mb-8">Developer/Content: <span class="text-orange-500 font-bold">KtGamers</span></p>
+                    <p class="text-sm md:text-base text-gray-300 font-medium mb-7">Featured Creator & Staff: <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-500 font-bold hover:underline">Jayesh Unfiltered</a></p>
 
-                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center mb-12">
-                        <button onclick="switchTab('quiz')" class="btn-primary py-3 px-8 rounded-xl font-bold flex items-center justify-center gap-2">
+                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center mb-10 max-w-md">
+                        <button onclick="switchTab('quiz')" class="btn-primary flex-1 py-3.5 px-6 rounded-xl font-bold flex items-center justify-center gap-2">
                             <i class="ph-bold ph-brain text-xl"></i> Go to Quiz
                         </button>
-                        <button onclick="switchTab('cert')" class="glass-panel py-3 px-8 rounded-xl font-bold text-white hover:bg-white/10 transition flex items-center justify-center gap-2 border border-white/20">
+                        <button onclick="switchTab('cert')" class="glass-panel flex-1 py-3.5 px-6 rounded-xl font-bold text-white hover:bg-white/10 transition flex items-center justify-center gap-2 border border-white/20 cursor-pointer">
                             <i class="ph-bold ph-scroll text-xl"></i> Go to Quests
                         </button>
                     </div>
 
-                    <!-- Staff Marquee -->
-                    <div class="w-full max-w-2xl bg-black/40 border border-white/5 rounded-xl p-4 relative mb-8">
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 text-left">Sigma SMP Official Staff</h3>
+                    <!-- Staff Marquee (Only Staff Names Inside, Continuous 10s Loop) -->
+                    <div class="w-full max-w-2xl bg-black/40 border border-white/10 rounded-xl p-4 relative mb-8">
+                        <h3 class="text-xs font-bold text-orange-400 uppercase tracking-widest mb-3 text-left">Official Current Sigma SMP Staff</h3>
                         <div class="marquee-wrapper border-t border-white/10 pt-3">
-                            <!-- Duplicate content to create seamless continuous loop -->
-                            <div class="marquee-content text-sm md:text-base font-medium text-white tracking-wide">
-                                <span>Official Current Sigma SMP staff: Vansh | Hackerji | Vakil | <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-400 hover:text-orange-300 hover:underline transition">Jayesh Unfiltered</a></span>
-                                <span>Official Current Sigma SMP staff: Vansh | Hackerji | Vakil | <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-400 hover:text-orange-300 hover:underline transition">Jayesh Unfiltered</a></span>
+                            <div class="marquee-track text-sm sm:text-base font-semibold text-white tracking-wide">
+                                <div class="marquee-group">
+                                    <span>Vansh &nbsp;|&nbsp; Hackerji &nbsp;|&nbsp; Vakil &nbsp;|&nbsp; <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-400 hover:text-orange-300 hover:underline">Jayesh Unfiltered</a></span>
+                                    <span>Vansh &nbsp;|&nbsp; Hackerji &nbsp;|&nbsp; Vakil &nbsp;|&nbsp; <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-400 hover:text-orange-300 hover:underline">Jayesh Unfiltered</a></span>
+                                </div>
+                                <div class="marquee-group" aria-hidden="true">
+                                    <span>Vansh &nbsp;|&nbsp; Hackerji &nbsp;|&nbsp; Vakil &nbsp;|&nbsp; <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-400 hover:text-orange-300 hover:underline">Jayesh Unfiltered</a></span>
+                                    <span>Vansh &nbsp;|&nbsp; Hackerji &nbsp;|&nbsp; Vakil &nbsp;|&nbsp; <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-400 hover:text-orange-300 hover:underline">Jayesh Unfiltered</a></span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Media Partners -->
                     <div class="w-full max-w-2xl mb-8">
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-left">Media Partners</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <a href="https://youtube.com/@shampoooplays?si=UPIds7OupOzdIP9-" target="_blank" class="glass-panel p-4 hover:border-orange-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 text-left">Media Partners</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <a href="https://youtube.com/@shampoooplays?si=UPIds7OupOzdIP9-" target="_blank" class="glass-panel p-3.5 hover:border-orange-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
                                 <i class="ph-fill ph-youtube-logo text-red-500 text-xl"></i> Shampoo Playz
                             </a>
-                            <a href="https://youtube.com/@rushuofficial?si=4Z5u55wvTPRhJbab" target="_blank" class="glass-panel p-4 hover:border-orange-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
+                            <a href="https://youtube.com/@rushuofficial?si=4Z5u55wvTPRhJbab" target="_blank" class="glass-panel p-3.5 hover:border-orange-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
                                 <i class="ph-fill ph-youtube-logo text-red-500 text-xl"></i> Rushu Gaming
                             </a>
-                            <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="glass-panel p-4 hover:border-orange-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
+                            <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="glass-panel p-3.5 hover:border-orange-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
                                 <i class="ph-fill ph-youtube-logo text-red-500 text-xl"></i> Jayesh Unfiltered
                             </a>
                         </div>
                     </div>
 
                     <!-- Discord Button -->
-                    <div class="w-full max-w-2xl mb-8">
-                        <a href="https://discord.gg/9UqYhTnb9A" target="_blank" class="w-full flex items-center justify-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white py-4 rounded-xl font-bold transition shadow-lg shadow-[#5865F2]/20">
+                    <div class="w-full max-w-2xl mb-6">
+                        <a href="https://discord.gg/9UqYhTnb9A" target="_blank" class="w-full flex items-center justify-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white py-4 rounded-xl font-bold transition shadow-lg shadow-[#5865F2]/25">
                             <i class="ph-fill ph-discord-logo text-2xl"></i> Official Discord Community Server
                         </a>
                     </div>
 
                     <!-- Info Note -->
-                    <div class="text-xs text-gray-500 flex items-center justify-center gap-1.5 mt-4">
-                        <i class="ph-fill ph-info bg-gray-800 text-gray-400 rounded-full p-1"></i> All data is found from official sigma smp website
+                    <div class="text-xs text-gray-400 flex items-center justify-center gap-1.5 mt-2">
+                        <i class="ph-fill ph-info text-orange-400 text-base"></i>
+                        <span>All data is found from official sigma smp website</span>
                     </div>
 
                 </div>
@@ -400,13 +435,13 @@
             
             <!-- QUIZ TAB -->
             <div id="tab-quiz" class="tab-section w-full max-w-3xl mx-auto">
-                <div class="glass p-8 relative overflow-hidden">
+                <div class="glass p-6 sm:p-8 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-bl-full pointer-events-none"></div>
                     
-                    <div class="flex justify-between items-end mb-8 border-b border-white/10 pb-4">
+                    <div class="flex justify-between items-end mb-6 border-b border-white/10 pb-4">
                         <div>
-                            <h2 class="text-2xl font-bold flex items-center gap-2"><i class="ph-fill ph-seal-question text-orange-500"></i> Fan Knowledge Trial</h2>
-                            <p class="text-sm text-gray-400 mt-1">Test your loyalty to Sigma SMP.</p>
+                            <h2 class="text-xl sm:text-2xl font-bold flex items-center gap-2"><i class="ph-fill ph-seal-question text-orange-500"></i> Fan Knowledge Trial</h2>
+                            <p class="text-xs sm:text-sm text-gray-400 mt-1">Test your loyalty to Sigma SMP.</p>
                         </div>
                         <div class="text-right">
                             <p class="text-xs text-gray-400 font-semibold uppercase">Total Score</p>
@@ -415,16 +450,21 @@
                     </div>
 
                     <div id="quiz-loading" class="text-center py-12 text-gray-400 animate-pulse">Loading trials from database...</div>
-                    <div id="quiz-empty" class="hidden text-center py-12 text-gray-400">No questions available currently. Check back later!</div>
+                    <div id="quiz-empty" class="hidden text-center py-12 text-gray-400">No questions available in the database yet. Add questions via the Admin Panel!</div>
 
                     <div id="quiz-active" class="hidden flex-col">
-                        <div class="bg-black/30 rounded-xl p-6 mb-6 border border-white/5 relative">
-                            <div class="absolute top-4 right-4 flex items-center gap-2 bg-red-500/20 text-red-400 px-3 py-1 rounded-full border border-red-500/30">
-                                <i class="ph-fill ph-clock text-lg animate-pulse"></i>
-                                <span id="q-timer" class="font-mono font-bold text-lg">15</span>s
+                        <div class="bg-black/35 rounded-xl p-5 sm:p-6 mb-6 border border-white/5 relative">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-xs text-orange-500 font-bold uppercase tracking-wider">
+                                    Question <span id="q-curr">1</span> of <span id="q-total">1</span>
+                                    <span id="q-remaining-badge" class="ml-2 text-gray-400 font-normal"></span>
+                                </span>
+                                <div class="flex items-center gap-1.5 bg-red-500/20 text-red-400 px-3 py-1 rounded-full border border-red-500/30">
+                                    <i class="ph-fill ph-clock text-base animate-pulse"></i>
+                                    <span id="q-timer" class="font-mono font-bold text-base">15</span>s
+                                </div>
                             </div>
-                            <span class="text-xs text-orange-500 font-bold uppercase tracking-wider mb-2 block">Question <span id="q-curr">1</span> of <span id="q-total">?</span></span>
-                            <h3 id="q-text" class="text-lg md:text-xl font-medium min-h-[4rem] pr-20">Question text here?</h3>
+                            <h3 id="q-text" class="text-lg md:text-xl font-semibold min-h-[3.5rem] text-white">Question text here?</h3>
                         </div>
                         
                         <div id="q-options" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -432,21 +472,24 @@
                         </div>
                     </div>
 
-                    <div id="quiz-complete" class="hidden flex-col items-center justify-center py-12 text-center">
+                    <div id="quiz-complete" class="hidden flex-col items-center justify-center py-10 text-center">
                         <i class="ph-fill ph-check-circle text-6xl text-green-500 mb-4 shadow-[0_0_30px_rgba(34,197,94,0.3)] rounded-full"></i>
-                        <h3 class="text-2xl font-bold mb-2">You've answered everything!</h3>
-                        <p class="text-gray-400">More questions will be added soon. Head over to the Quests section to claim your reward.</p>
-                        <button onclick="switchTab('cert')" class="btn-primary mt-8 px-8 py-3 rounded-full font-bold">View Quests</button>
+                        <h3 class="text-2xl font-bold mb-2">Wait for new quizes</h3>
+                        <p class="text-gray-400 max-w-md mx-auto">Every sunday 12 quizes. Head over to the Quests section to claim your reward.</p>
+                        <p id="quiz-answered-summary" class="text-xs text-gray-500 mt-3 font-mono"></p>
+                        <div class="flex flex-wrap justify-center gap-3 mt-7">
+                            <button onclick="switchTab('cert')" class="btn-primary px-8 py-3 rounded-full font-bold">View Quests</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- CERTIFICATE / QUESTS TAB -->
             <div id="tab-cert" class="tab-section w-full max-w-5xl mx-auto text-center">
-                <div class="glass p-8 md:p-12">
-                    <i class="ph-fill ph-scroll text-6xl text-yellow-500 mb-4 drop-shadow-[0_0_15px_rgba(234,179,8,0.5)]"></i>
-                    <h2 class="text-3xl font-bold mb-2 text-white">Fan Quests</h2>
-                    <p class="text-gray-400 mb-10 max-w-xl mx-auto">Solve quizzes to increase your score and unlock exclusive certificates. Track your progress below.</p>
+                <div class="glass p-6 sm:p-10">
+                    <i class="ph-fill ph-scroll text-5xl sm:text-6xl text-yellow-500 mb-3 drop-shadow-[0_0_15px_rgba(234,179,8,0.5)]"></i>
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-white">Tasks & Quests</h2>
+                    <p class="text-gray-400 mb-8 max-w-xl mx-auto text-sm sm:text-base">Solve quizzes to increase your score and unlock exclusive Sigma SMP fan certificates.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left" id="quests-container">
                         
@@ -456,12 +499,12 @@
                                 <h3 class="text-2xl font-black text-[#a19d94] tracking-wider uppercase">Iron Tier</h3>
                                 <i class="ph-fill ph-medal text-3xl text-[#a19d94]"></i>
                             </div>
-                            <p class="text-sm text-gray-300 mb-6 font-medium">Required Correct: <span class="text-white font-bold">10</span></p>
+                            <p class="text-sm text-gray-300 mb-5 font-medium">Required Correct: <span class="text-white font-bold">10</span></p>
                             
                             <div class="w-full bg-black/60 rounded-full h-4 mb-2 border border-white/5 p-[2px] shadow-inner relative">
-                                <div id="prog-iron" class="bg-[#a19d94] h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(161,157,148,0.8)]" style="width: 0%"></div>
+                                <div id="prog-iron" class="bg-[#a19d94] h-full rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(161,157,148,0.8)]" style="width: 0%"></div>
                             </div>
-                            <p class="text-xs text-right text-gray-400 mb-6 font-mono font-bold tracking-widest"><span id="text-prog-iron" class="text-white">0</span> / 10</p>
+                            <p class="text-xs text-right text-gray-400 mb-5 font-mono font-bold tracking-widest"><span id="text-prog-iron" class="text-white">0</span> / 10</p>
                             
                             <button id="btn-cert-iron" onclick="generateCert('IRON', '#a19d94', 10)" class="w-full py-3 rounded-xl font-bold bg-gray-600 opacity-50 cursor-not-allowed transition flex items-center justify-center gap-2 mt-auto" disabled>
                                 <i class="ph-bold ph-download-simple"></i> Download certificate
@@ -474,12 +517,12 @@
                                 <h3 class="text-2xl font-black text-[#FFD700] tracking-wider uppercase">Gold Tier</h3>
                                 <i class="ph-fill ph-medal text-3xl text-[#FFD700]"></i>
                             </div>
-                            <p class="text-sm text-gray-300 mb-6 font-medium">Required Correct: <span class="text-white font-bold">20</span></p>
+                            <p class="text-sm text-gray-300 mb-5 font-medium">Required Correct: <span class="text-white font-bold">20</span></p>
                             
                             <div class="w-full bg-black/60 rounded-full h-4 mb-2 border border-white/5 p-[2px] shadow-inner relative">
-                                <div id="prog-gold" class="bg-[#FFD700] h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(255,215,0,0.8)]" style="width: 0%"></div>
+                                <div id="prog-gold" class="bg-[#FFD700] h-full rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(255,215,0,0.8)]" style="width: 0%"></div>
                             </div>
-                            <p class="text-xs text-right text-gray-400 mb-6 font-mono font-bold tracking-widest"><span id="text-prog-gold" class="text-white">0</span> / 20</p>
+                            <p class="text-xs text-right text-gray-400 mb-5 font-mono font-bold tracking-widest"><span id="text-prog-gold" class="text-white">0</span> / 20</p>
                             
                             <button id="btn-cert-gold" onclick="generateCert('GOLD', '#FFD700', 20)" class="w-full py-3 rounded-xl font-bold bg-gray-600 opacity-50 cursor-not-allowed transition flex items-center justify-center gap-2 mt-auto" disabled>
                                 <i class="ph-bold ph-download-simple"></i> Download certificate
@@ -492,12 +535,12 @@
                                 <h3 class="text-2xl font-black text-[#b9f2ff] tracking-wider uppercase">Diamond Tier</h3>
                                 <i class="ph-fill ph-sketch-logo text-3xl text-[#b9f2ff]"></i>
                             </div>
-                            <p class="text-sm text-gray-300 mb-6 font-medium">Required Correct: <span class="text-white font-bold">30</span></p>
+                            <p class="text-sm text-gray-300 mb-5 font-medium">Required Correct: <span class="text-white font-bold">30</span></p>
                             
                             <div class="w-full bg-black/60 rounded-full h-4 mb-2 border border-white/5 p-[2px] shadow-inner relative">
-                                <div id="prog-diamond" class="bg-[#b9f2ff] h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(185,242,255,0.8)]" style="width: 0%"></div>
+                                <div id="prog-diamond" class="bg-[#b9f2ff] h-full rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(185,242,255,0.8)]" style="width: 0%"></div>
                             </div>
-                            <p class="text-xs text-right text-gray-400 mb-6 font-mono font-bold tracking-widest"><span id="text-prog-diamond" class="text-white">0</span> / 30</p>
+                            <p class="text-xs text-right text-gray-400 mb-5 font-mono font-bold tracking-widest"><span id="text-prog-diamond" class="text-white">0</span> / 30</p>
                             
                             <button id="btn-cert-diamond" onclick="generateCert('DIAMOND', '#b9f2ff', 30)" class="w-full py-3 rounded-xl font-bold bg-gray-600 opacity-50 cursor-not-allowed transition flex items-center justify-center gap-2 mt-auto" disabled>
                                 <i class="ph-bold ph-download-simple"></i> Download certificate
@@ -505,17 +548,17 @@
                         </div>
 
                         <!-- Netherite Tier -->
-                        <div class="glass-panel p-6 border-l-4 border-[#5B4F69] flex flex-col relative overflow-hidden bg-gradient-to-r from-[#5B4F69]/20 to-transparent">
+                        <div class="glass-panel p-6 border-l-4 border-[#8A799E] flex flex-col relative overflow-hidden bg-gradient-to-r from-[#5B4F69]/20 to-transparent">
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-2xl font-black text-[#8A799E] tracking-wider uppercase drop-shadow-[0_0_10px_rgba(91,79,105,0.8)]">Netherite Tier</h3>
+                                <h3 class="text-2xl font-black text-[#8A799E] tracking-wider uppercase">Netherite Tier</h3>
                                 <i class="ph-fill ph-crown text-3xl text-[#8A799E]"></i>
                             </div>
-                            <p class="text-sm text-gray-300 mb-6 font-medium">Required Correct: <span class="text-white font-bold">50</span></p>
+                            <p class="text-sm text-gray-300 mb-5 font-medium">Required Correct: <span class="text-white font-bold">50</span></p>
                             
                             <div class="w-full bg-black/60 rounded-full h-4 mb-2 border border-white/5 p-[2px] shadow-inner relative">
-                                <div id="prog-netherite" class="bg-[#5B4F69] h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(91,79,105,0.8)]" style="width: 0%"></div>
+                                <div id="prog-netherite" class="bg-[#8A799E] h-full rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(138,121,158,0.8)]" style="width: 0%"></div>
                             </div>
-                            <p class="text-xs text-right text-gray-400 mb-6 font-mono font-bold tracking-widest"><span id="text-prog-netherite" class="text-white">0</span> / 50</p>
+                            <p class="text-xs text-right text-gray-400 mb-5 font-mono font-bold tracking-widest"><span id="text-prog-netherite" class="text-white">0</span> / 50</p>
                             
                             <button id="btn-cert-netherite" onclick="generateCert('NETHERITE', '#8A799E', 50)" class="w-full py-3 rounded-xl font-bold bg-gray-600 opacity-50 cursor-not-allowed transition flex items-center justify-center gap-2 mt-auto" disabled>
                                 <i class="ph-bold ph-download-simple"></i> Download certificate
@@ -529,28 +572,27 @@
             <div id="tab-giveaway" class="tab-section w-full max-w-2xl mx-auto">
                 <div class="glass p-12 text-center relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-orange-600/20 pointer-events-none"></div>
-                    <i class="ph-fill ph-gift text-8xl text-white mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] animate-bounce"></i>
+                    <i class="ph-fill ph-gift text-7xl sm:text-8xl text-white mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] animate-bounce"></i>
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-purple-400">Upcoming Giveaway</h2>
-                    <p class="text-xl text-gray-300 font-medium tracking-wide border-t border-white/10 pt-4 max-w-xs mx-auto">Coming soon... Stay tuned!</p>
+                    <p class="text-xl text-gray-300 font-semibold tracking-wide border-t border-white/10 pt-4 max-w-xs mx-auto">Coming soon</p>
                 </div>
             </div>
 
             <!-- ABOUT US TAB -->
             <div id="tab-about" class="tab-section w-full max-w-4xl mx-auto">
                 <div class="glass p-8 md:p-12 rounded-3xl flex flex-col md:flex-row items-center gap-10">
-                    <div class="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-full border-4 border-orange-500 shadow-[0_0_30px_rgba(255,85,0,0.3)] overflow-hidden bg-black flex justify-center items-center">
+                    <div class="w-44 h-44 md:w-60 md:h-60 shrink-0 rounded-full border-4 border-orange-500 shadow-[0_0_30px_rgba(255,85,0,0.3)] overflow-hidden bg-black flex justify-center items-center">
                         <img src="founder.jpeg" alt="KtGamers" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/222/FFF?text=KtGamers'">
                     </div>
                     
                     <div class="text-center md:text-left">
-                        <div class="inline-block bg-orange-500/10 text-orange-500 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-4 border border-orange-500/20">Creator & Developer</div>
+                        <div class="inline-block bg-orange-500/10 text-orange-500 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-4 border border-orange-500/20">Developer & Content Writer</div>
                         <h3 class="text-3xl md:text-4xl font-extrabold mb-2 text-white">Kaustubh Deore</h3>
                         <p class="text-xl text-gray-400 font-medium mb-6">Aka <span class="text-orange-400 font-bold">KtGamers</span></p>
                         
                         <div class="bg-black/30 p-6 rounded-2xl border-l-4 border-orange-500 relative">
-                            <i class="ph-fill ph-quotes absolute -top-3 -left-3 text-3xl text-orange-500/50 bg-black rounded-full"></i>
                             <p class="text-gray-300 leading-relaxed italic">
-                                "I joined the Sigma family from S6 and I absolutely love Sigma SMP! This project is dedicated to the amazing community."
+                                "I joined the Sigma family from S6 and I deeply love Sigma SMP! This platform was built to bring fans together through weekly challenges, quests, and community rewards."
                             </p>
                         </div>
                     </div>
@@ -561,8 +603,8 @@
             <div id="tab-support" class="tab-section w-full max-w-3xl mx-auto">
                 <div class="glass p-8 md:p-12 text-center">
                     <i class="ph-fill ph-headset text-5xl text-blue-400 mb-4"></i>
-                    <h2 class="text-3xl font-bold mb-2">Need Assistance?</h2>
-                    <p class="text-gray-400 mb-8 max-w-md mx-auto">For forgot pin, any issues, or suggestions regarding the platform, feel free to reach out.</p>
+                    <h2 class="text-3xl font-bold mb-2">Support & Assistance</h2>
+                    <p class="text-gray-400 mb-8 max-w-md mx-auto">For forgot PIN, any issues, or suggestions regarding the website, reach out directly:</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                         <div class="glass-panel p-6 hover:border-blue-500/50 transition flex flex-col items-center md:items-start text-center md:text-left">
@@ -581,10 +623,10 @@
 
         </main>
 
-        <footer class="mt-auto py-6 text-center border-t border-white/5 bg-black/60 backdrop-blur-md relative z-10 w-full flex flex-col items-center">
-            <p class="font-medium text-gray-400 text-sm mb-2">Made with love by <span class="text-orange-500 font-bold">KtGamers</span> | All rights reserved</p>
-            <button onclick="document.getElementById('admin-login-modal').classList.remove('hidden'); document.getElementById('admin-login-modal').classList.add('flex')" class="text-gray-600 hover:text-gray-300 transition cursor-pointer" title="Admin Portal">
-                <i class="ph-fill ph-lock-key"></i>
+        <footer class="mt-auto py-5 text-center border-t border-white/5 bg-black/60 backdrop-blur-md relative z-10 w-full flex flex-col items-center">
+            <p class="font-medium text-gray-400 text-sm mb-1.5">Made with love by <span class="text-orange-500 font-bold">KtGamers</span> | All rights reserved</p>
+            <button onclick="document.getElementById('admin-login-modal').classList.remove('hidden'); document.getElementById('admin-login-modal').classList.add('flex')" class="text-gray-500 hover:text-orange-400 transition cursor-pointer p-1" title="Admin Portal (Passcode: 9822)">
+                <i class="ph-fill ph-lock-key text-lg"></i>
             </button>
         </footer>
     </div>
@@ -597,18 +639,21 @@
                     <h2 class="text-2xl font-bold flex items-center gap-3">
                         <i class="ph-fill ph-shield-star text-red-500"></i> Admin Console
                     </h2>
-                    <p class="text-gray-400 text-sm mt-1">Manage quizzes and user accounts.</p>
+                    <p class="text-gray-400 text-sm mt-1">Manage quizzes, countdown timers, and user accounts.</p>
                 </div>
-                <button onclick="logoutAdmin()" class="glass-panel px-6 py-2 text-sm font-medium hover:bg-white/10 transition rounded-lg text-white cursor-pointer">Exit Console</button>
+                <button onclick="logoutAdmin()" class="glass-panel px-6 py-2.5 text-sm font-bold hover:bg-white/10 transition rounded-lg text-white cursor-pointer">Exit Console</button>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
                 <!-- QUIZ MANAGER -->
                 <div class="glass p-6 flex flex-col h-[700px]">
-                    <h3 class="font-bold text-xl border-b border-white/10 pb-4 mb-4 flex items-center gap-2 text-orange-400">
-                        <i class="ph ph-database"></i> Quiz Manager
-                    </h3>
+                    <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
+                        <h3 class="font-bold text-xl flex items-center gap-2 text-orange-400">
+                            <i class="ph ph-database"></i> Quiz Manager
+                        </h3>
+                        <span id="adm-quiz-count" class="text-xs bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full font-bold">0 Questions</span>
+                    </div>
                     
                     <!-- Add Q Form -->
                     <div class="bg-black/40 p-4 rounded-xl border border-white/5 mb-6">
@@ -622,24 +667,20 @@
                             <input type="text" id="adm-opt-3" placeholder="Option 4" class="input-glass rounded-lg p-2 text-sm outline-none">
                         </div>
                         
-                        <div class="flex gap-3 mb-3">
-                            <input type="number" id="adm-timer" placeholder="Timer (seconds, e.g. 15)" class="input-glass flex-grow rounded-lg p-2 text-sm outline-none" value="15">
-                            <input type="date" id="adm-release-date" class="input-glass flex-grow rounded-lg p-2 text-sm outline-none" title="Release Date">
-                        </div>
-                        
-                        <div class="flex gap-3">
+                        <div class="flex flex-wrap sm:flex-nowrap gap-3">
+                            <input type="number" id="adm-timer" placeholder="Timer (sec)" class="input-glass w-28 rounded-lg p-2 text-sm outline-none" value="15" min="5" max="120">
                             <select id="adm-correct" class="input-glass flex-grow rounded-lg p-2 text-sm outline-none cursor-pointer">
                                 <option value="0">Correct: Option 1</option>
                                 <option value="1">Correct: Option 2</option>
                                 <option value="2">Correct: Option 3</option>
                                 <option value="3">Correct: Option 4</option>
                             </select>
-                            <button id="btn-add-q" class="bg-orange-600 hover:bg-orange-500 text-white px-6 rounded-lg font-bold transition text-sm cursor-pointer">Add</button>
+                            <button id="btn-add-q" class="bg-orange-600 hover:bg-orange-500 text-white px-6 py-2 rounded-lg font-bold transition text-sm cursor-pointer">Add Quiz</button>
                         </div>
                     </div>
 
                     <!-- List -->
-                    <div class="flex-grow overflow-y-auto pr-2 space-y-3 custom-scrollbar" id="adm-quiz-list">
+                    <div class="flex-grow overflow-y-auto pr-2 space-y-3" id="adm-quiz-list">
                         <!-- JS populated -->
                     </div>
                 </div>
@@ -650,7 +691,7 @@
                         <i class="ph ph-users-three"></i> User Manager
                     </h3>
                     
-                    <div class="flex-grow overflow-y-auto pr-2 space-y-3 custom-scrollbar" id="adm-user-list">
+                    <div class="flex-grow overflow-y-auto pr-2 space-y-3" id="adm-user-list">
                         <!-- JS populated -->
                     </div>
                 </div>
@@ -659,10 +700,8 @@
         </div>
     </div>
 
-    <!-- MODALS -->
-    
     <!-- Admin Login Modal -->
-    <div id="admin-login-modal" class="fixed inset-0 bg-black/90 z-[60] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div id="admin-login-modal" class="fixed inset-0 bg-black/90 z-[260] hidden items-center justify-center p-4 backdrop-blur-sm">
         <div class="glass max-w-sm w-full p-8 text-center border-t-4 border-red-500">
             <i class="ph-fill ph-shield-warning text-5xl text-red-500 mb-4 block drop-shadow-md"></i>
             <h3 class="text-2xl font-bold mb-2">Admin Access</h3>
@@ -676,7 +715,7 @@
     </div>
 
     <!-- Edit PIN Modal -->
-    <div id="edit-pin-modal" class="fixed inset-0 bg-black/90 z-[70] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div id="edit-pin-modal" class="fixed inset-0 bg-black/90 z-[260] hidden items-center justify-center p-4 backdrop-blur-sm">
         <div class="glass max-w-sm w-full p-8 text-center">
             <h3 class="text-xl font-bold mb-2">Change PIN</h3>
             <p class="text-sm text-gray-400 mb-4">User: <span id="edit-pin-user" class="font-bold text-white"></span></p>
@@ -689,10 +728,36 @@
         </div>
     </div>
 
+    <!-- Certificate Preview & Download Modal -->
+    <div id="cert-preview-modal" class="fixed inset-0 bg-black/90 z-[280] hidden items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass max-w-4xl w-full p-6 sm:p-8 text-center border-t-4 border-orange-500 relative max-h-[92vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="cert-modal-title" class="text-xl sm:text-2xl font-extrabold text-white flex items-center gap-2">
+                    <i class="ph-fill ph-medal text-orange-500"></i> Official Sigma SMP Certificate
+                </h3>
+                <button onclick="closeCertModal()" class="text-gray-400 hover:text-white p-2 rounded-lg bg-white/5 hover:bg-white/10 transition cursor-pointer">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <div class="relative w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-black mb-6 flex justify-center items-center">
+                <canvas id="cert-display-canvas" width="1200" height="800" class="w-full h-auto block"></canvas>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a id="cert-download-again-btn" href="#" download="SigmaSMP_Certificate.png" class="btn-primary px-8 py-3.5 rounded-xl font-bold flex items-center gap-2 text-sm sm:text-base shadow-lg">
+                    <i class="ph-bold ph-download-simple text-xl"></i> Download Certificate (.PNG)
+                </a>
+                <button onclick="closeCertModal()" class="glass-panel hover:bg-white/10 text-gray-200 px-8 py-3.5 rounded-xl font-bold text-sm sm:text-base transition cursor-pointer">
+                    Close Preview
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Hidden Canvas for Certificate Generation -->
-    <div style="position: absolute; left: -9999px;">
-        <canvas id="cert-canvas" width="1600" height="1100"></canvas>
+    <div style="position: absolute; left: -9999px; top: -9999px;">
+        <canvas id="cert-canvas" width="1200" height="800"></canvas>
     </div>
 
     <!-- Application Logic -->
@@ -700,7 +765,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, push, set, onValue, remove, update, get } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        // Firebase Configuration (Exact provided)
+        // Exact Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyD3CjBAAlizKk-U8qkfuRGX-vMC7BEW_5w",
             authDomain: "be-a-fan.firebaseapp.com",
@@ -719,6 +784,8 @@
         let currentUser = null; 
         let allQuizzes = [];
         let pendingQuizzes = [];
+        let isSubmittingQuiz = false;
+        let listenersInitialized = false;
         
         const ADMIN_PASSCODE = '9822';
         let quizTimerInterval = null;
@@ -726,18 +793,18 @@
         // --- AUDIO INITIALIZATION ---
         const bgMusic = new Audio('halloweenweb.mp3');
         bgMusic.loop = true;
-        bgMusic.volume = 0.4;
+        bgMusic.volume = 0.45;
         
         // --- CUSTOM MODALS & TOASTS ---
         window.showToast = (msg, type = 'info') => {
             const container = document.getElementById('toast-container');
             if(!container) return;
             const toast = document.createElement('div');
-            const colorClass = type === 'error' ? 'border-red-500 text-red-500' : (type === 'success' ? 'border-green-500 text-green-500' : (type === 'warning' ? 'border-yellow-500 text-yellow-500' : 'border-blue-500 text-blue-500'));
+            const colorClass = type === 'error' ? 'border-red-500 text-red-400' : (type === 'success' ? 'border-green-500 text-green-400' : (type === 'warning' ? 'border-yellow-500 text-yellow-400' : 'border-blue-500 text-blue-400'));
             const iconClass = type === 'error' ? 'ph-warning-circle' : (type === 'success' ? 'ph-check-circle' : (type === 'warning' ? 'ph-warning' : 'ph-info'));
             
             toast.className = `glass px-4 py-3 mb-2 rounded-lg border-l-4 shadow-[0_0_15px_rgba(0,0,0,0.5)] text-sm font-medium transform transition-all duration-300 translate-x-full opacity-0 flex items-center gap-2 ${colorClass}`;
-            toast.innerHTML = `<i class="ph-fill ${iconClass} text-xl"></i> ${msg}`;
+            toast.innerHTML = `<i class="ph-fill ${iconClass} text-xl"></i> <span>${msg}</span>`;
             container.appendChild(toast);
             
             requestAnimationFrame(() => {
@@ -776,21 +843,66 @@
             }
         };
 
+        // Helper to sanitize answered map so "undefined" or "null" keys never corrupt quiz filtering
+        function cleanAnsweredMap(raw) {
+            const cleaned = {};
+            if (!raw) return cleaned;
+            if (Array.isArray(raw)) {
+                raw.forEach((val, idx) => {
+                    if (typeof val === 'string' && val !== 'undefined' && val !== 'null') {
+                        cleaned[val] = true;
+                    } else if (val === true) {
+                        cleaned[String(idx)] = true;
+                    }
+                });
+            } else if (typeof raw === 'object') {
+                Object.entries(raw).forEach(([k, v]) => {
+                    if (k && k !== 'undefined' && k !== 'null' && v === true) {
+                        cleaned[String(k)] = true;
+                    }
+                });
+            }
+            return cleaned;
+        }
+
+        // Helper to normalize a quiz object from Firebase regardless of schema version
+        function normalizeQuiz(firebaseKey, val) {
+            if (!val || typeof val !== 'object') return null;
+            let options = [];
+            if (Array.isArray(val.options) && val.options.length > 0) {
+                options = val.options;
+            } else if (val.options && typeof val.options === 'object') {
+                options = Object.values(val.options);
+            } else {
+                options = [val.optA, val.optB, val.optC, val.optD].filter(v => v !== undefined && v !== null && String(v).trim() !== '');
+            }
+            const correctIdx = val.correct !== undefined ? parseInt(val.correct, 10) : (val.correctIndex !== undefined ? parseInt(val.correctIndex, 10) : 0);
+            return {
+                id: String(firebaseKey),
+                question: val.question || 'Untitled Question',
+                options: options,
+                correct: isNaN(correctIdx) ? 0 : correctIdx,
+                timer: parseInt(val.timer, 10) || 15,
+                timestamp: val.timestamp || 0
+            };
+        }
+
         // --- ENTRY & AUDIO PLAY ---
         window.enterExperience = () => {
-            // Immediately start audio on user click
             try {
-                bgMusic.play().catch(e => console.warn("Audio autoplay policy restricted playback", e));
+                bgMusic.play().catch(e => console.warn("Audio play blocked:", e));
             } catch(err) {}
 
-            // Fade out overlay cleanly
             const entryView = document.getElementById('view-entry');
-            entryView.classList.add('opacity-0');
-            
-            setTimeout(() => {
-                entryView.style.display = 'none'; // Hide it fully so it doesn't block clicks
+            if (entryView) {
+                entryView.classList.add('opacity-0');
+                setTimeout(() => {
+                    entryView.style.display = 'none';
+                    checkLoginState();
+                }, 300);
+            } else {
                 checkLoginState();
-            }, 500);
+            }
         };
 
         function checkLoginState() {
@@ -800,7 +912,14 @@
                 document.getElementById('login-btn-text').innerText = "Loading...";
                 get(ref(db, 'users/' + savedId)).then(snap => {
                     if(snap.exists()) {
-                        currentUser = { id: savedId, ...snap.val() };
+                        const data = snap.val();
+                        currentUser = {
+                            id: String(savedId),
+                            discordId: data.discordId || savedId,
+                            pin: data.pin,
+                            score: Number(data.score) || 0,
+                            answered: cleanAnsweredMap(data.answered)
+                        };
                         proceedToDashboard();
                     } else {
                         localStorage.removeItem('sigma_fan_uid');
@@ -819,39 +938,36 @@
         // --- VIEW MANAGEMENT ---
         function switchView(viewId) {
             document.querySelectorAll('.app-view').forEach(v => {
-                if (v.id !== viewId) {
-                    v.classList.remove('active');
-                    setTimeout(() => {
-                        if (!v.classList.contains('active')) {
-                            v.style.display = 'none';
-                        }
-                    }, 400);
-                }
+                v.classList.remove('active');
+                v.style.display = 'none';
             });
-            
-            setTimeout(() => {
-                const target = document.getElementById(viewId);
-                if (target) {
-                    target.style.display = 'flex';
-                    void target.offsetWidth; // trigger reflow
-                    target.classList.add('active');
-                }
-            }, 50);
+            const target = document.getElementById(viewId);
+            if (target) {
+                target.style.display = 'flex';
+                void target.offsetWidth;
+                target.classList.add('active');
+            }
         }
 
         window.switchTab = (tabId) => {
             document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(t => t.classList.remove('active'));
             
-            document.getElementById(`tab-${tabId}`).classList.add('active');
-            document.querySelector(`.nav-item[data-tab="${tabId}"]`).classList.add('active');
+            const sec = document.getElementById(`tab-${tabId}`);
+            if (sec) sec.classList.add('active');
+            const navBtn = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+            if (navBtn) navBtn.classList.add('active');
             
-            if(tabId === 'quiz') initQuizPlay();
+            if(tabId === 'quiz') {
+                initQuizPlay();
+            } else {
+                clearInterval(quizTimerInterval);
+            }
         };
 
         // --- AUTHENTICATION ---
         function sanitizeId(id) {
-            return id.replace(/[.#$\[\]]/g, '_').toLowerCase();
+            return id.replace(/[.#$\[\]\/]/g, '_').toLowerCase();
         }
 
         window.handleLogin = async () => {
@@ -872,9 +988,15 @@
                 const snapshot = await get(userRef);
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    if (data.pin === pin) {
-                        currentUser = { id: sId, ...data };
-                        showToast("Welcome back!", "success");
+                    if (String(data.pin) === String(pin)) {
+                        currentUser = {
+                            id: String(sId),
+                            discordId: data.discordId || discordId,
+                            pin: String(data.pin),
+                            score: Number(data.score) || 0,
+                            answered: cleanAnsweredMap(data.answered)
+                        };
+                        showToast("Welcome back, " + currentUser.discordId + "!", "success");
                         proceedToDashboard();
                     } else {
                         showToast("Incorrect PIN for this Discord ID.", "error");
@@ -883,14 +1005,17 @@
                 } else {
                     const newUser = { 
                         discordId: discordId, 
-                        pin: pin, 
+                        pin: String(pin), 
                         score: 0, 
                         answered: {}, 
                         notify: document.getElementById('login-notify').checked
                     };
                     await set(userRef, newUser);
-                    currentUser = { id: sId, ...newUser };
-                    showToast("Account created successfully!", "success");
+                    currentUser = {
+                        id: String(sId),
+                        ...newUser
+                    };
+                    showToast("Account created! Welcome to Sigma SMP Fan Hub.", "success");
                     proceedToDashboard();
                 }
             } catch (error) {
@@ -900,42 +1025,63 @@
         };
 
         function proceedToDashboard() {
-            localStorage.setItem('sigma_fan_uid', currentUser.id);
+            const userId = String(currentUser.id);
+            localStorage.setItem('sigma_fan_uid', userId);
             document.getElementById('nav-user-id').innerText = currentUser.discordId;
+            document.getElementById('user-score-display').innerText = currentUser.score || 0;
             switchView('view-dashboard');
-            
-            onValue(ref(db, 'quizzes'), (snap) => {
-                allQuizzes = [];
-                snap.forEach(c => allQuizzes.push({ id: c.key, ...c.val() }));
-                
-                if(document.getElementById('tab-quiz').classList.contains('active')) {
+            updateQuestProgress();
+
+            if (!listenersInitialized) {
+                listenersInitialized = true;
+
+                // 1. Sync all quizzes with guaranteed Firebase key IDs
+                onValue(ref(db, 'quizzes'), (snap) => {
+                    const loaded = [];
+                    if (snap.exists()) {
+                        const raw = snap.val();
+                        Object.entries(raw).forEach(([key, val]) => {
+                            const norm = normalizeQuiz(key, val);
+                            if (norm && norm.options.length > 0) {
+                                loaded.push(norm);
+                            }
+                        });
+                    }
+                    allQuizzes = loaded;
+
+                    if (!isSubmittingQuiz && document.getElementById('tab-quiz').classList.contains('active')) {
+                        initQuizPlay();
+                    }
+                });
+            }
+
+            // 2. Sync current user profile & detect account deletion
+            onValue(ref(db, `users/${userId}`), (snap) => {
+                if (!currentUser || currentUser.id !== userId) return;
+                if (!snap.exists()) {
+                    logout();
+                    setTimeout(() => showToast("Your account was removed by an administrator.", "warning"), 400);
+                    return;
+                }
+                const data = snap.val();
+                currentUser.id = userId; // Always preserve ID
+                currentUser.discordId = data.discordId || currentUser.discordId;
+                currentUser.score = Number(data.score) || 0;
+                const remoteAnswered = cleanAnsweredMap(data.answered);
+                currentUser.answered = { ...(currentUser.answered || {}), ...remoteAnswered };
+
+                document.getElementById('nav-user-id').innerText = currentUser.discordId;
+                document.getElementById('user-score-display').innerText = currentUser.score;
+                updateQuestProgress();
+
+                if (!isSubmittingQuiz && document.getElementById('tab-quiz').classList.contains('active')) {
                     initQuizPlay();
                 }
             });
-
-            onValue(ref(db, `users/${currentUser.id}`), (snap) => {
-                if (!snap.exists()) {
-                    logout();
-                    setTimeout(() => showToast("Your account was removed by an admin.", "warning"), 500);
-                }
-            });
-
-            onValue(ref(db, `users/${currentUser.id}/score`), (snap) => {
-                if(snap.exists()) {
-                    currentUser.score = snap.val();
-                    document.getElementById('user-score-display').innerText = currentUser.score;
-                    updateQuestProgress();
-                }
-            });
-
-            onValue(ref(db, `users/${currentUser.id}/answered`), (snap) => {
-                currentUser.answered = snap.val() || {};
-            });
-            
-            updateQuestProgress(); 
         }
 
         window.logout = () => {
+            clearInterval(quizTimerInterval);
             localStorage.removeItem('sigma_fan_uid');
             currentUser = null;
             document.getElementById('login-discord').value = '';
@@ -948,7 +1094,7 @@
         // --- QUESTS LOGIC ---
         window.updateQuestProgress = () => {
             if(!currentUser) return;
-            const s = currentUser.score || 0;
+            const s = Number(currentUser.score) || 0;
             const tiers = [
                 { id: 'iron', req: 10 },
                 { id: 'gold', req: 20 },
@@ -976,60 +1122,73 @@
             });
         };
 
-        // --- QUIZ LOGIC ---
+        // --- QUIZ LOGIC (100% Bug-Free Sequential Advancement) ---
         function initQuizPlay() {
+            if (!currentUser || isSubmittingQuiz) return;
             document.getElementById('quiz-loading').style.display = 'none';
             
-            const today = new Date();
-            const todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-            
+            const answeredMap = cleanAnsweredMap(currentUser.answered);
+            currentUser.answered = answeredMap;
+
+            // Every quiz in the database that is not marked true in answeredMap is pending
             pendingQuizzes = allQuizzes.filter(q => {
-                const isAnswered = currentUser.answered && currentUser.answered[q.id] === true;
-                const isReleased = !q.releaseDate || q.releaseDate <= todayStr;
-                return !isAnswered && isReleased;
+                const qid = String(q.id);
+                return answeredMap[qid] !== true;
             });
 
-            const visibleTotal = allQuizzes.filter(q => !q.releaseDate || q.releaseDate <= todayStr).length;
+            const totalQuizzesCount = allQuizzes.length;
+            const answeredCount = totalQuizzesCount - pendingQuizzes.length;
 
-            if(visibleTotal === 0) {
+            if (totalQuizzesCount === 0) {
+                clearInterval(quizTimerInterval);
                 document.getElementById('quiz-empty').classList.remove('hidden');
                 document.getElementById('quiz-active').classList.add('hidden');
+                document.getElementById('quiz-active').classList.remove('flex');
                 document.getElementById('quiz-complete').classList.add('hidden');
+                document.getElementById('quiz-complete').classList.remove('flex');
             } else if (pendingQuizzes.length === 0) {
+                clearInterval(quizTimerInterval);
                 document.getElementById('quiz-empty').classList.add('hidden');
                 document.getElementById('quiz-active').classList.add('hidden');
+                document.getElementById('quiz-active').classList.remove('flex');
                 document.getElementById('quiz-complete').classList.remove('hidden');
                 document.getElementById('quiz-complete').classList.add('flex');
+                const summaryEl = document.getElementById('quiz-answered-summary');
+                if (summaryEl) {
+                    summaryEl.innerText = `(Completed ${answeredCount} of ${totalQuizzesCount} total quizzes in database)`;
+                }
             } else {
                 document.getElementById('quiz-empty').classList.add('hidden');
                 document.getElementById('quiz-complete').classList.add('hidden');
                 document.getElementById('quiz-complete').classList.remove('flex');
                 document.getElementById('quiz-active').classList.remove('hidden');
                 document.getElementById('quiz-active').classList.add('flex');
-                renderQuestion(visibleTotal);
+                renderQuestion(totalQuizzesCount, answeredCount);
             }
         }
 
-        function renderQuestion(visibleTotal) {
+        function renderQuestion(totalQuizzesCount, answeredCount) {
             const q = pendingQuizzes[0];
-            document.getElementById('q-curr').innerText = (visibleTotal - pendingQuizzes.length) + 1;
-            document.getElementById('q-total').innerText = visibleTotal;
+            if (!q) return;
+
+            document.getElementById('q-curr').innerText = answeredCount + 1;
+            document.getElementById('q-total').innerText = totalQuizzesCount;
+            document.getElementById('q-remaining-badge').innerText = `(${pendingQuizzes.length} remaining)`;
             document.getElementById('q-text').innerText = q.question;
             
             const optsContainer = document.getElementById('q-options');
             optsContainer.innerHTML = '';
             
-            [q.optA, q.optB, q.optC, q.optD].forEach((optText, idx) => {
-                if(!optText) return;
+            q.options.forEach((optText, idx) => {
                 const btn = document.createElement('button');
-                btn.className = "glass-panel p-4 text-left font-medium hover:bg-white/10 border border-transparent hover:border-orange-500/50 transition w-full cursor-pointer";
+                btn.className = "glass-panel p-4 text-left font-medium hover:bg-white/10 border border-transparent hover:border-orange-500/50 transition w-full cursor-pointer text-white";
                 btn.innerText = optText;
-                btn.onclick = () => submitAnswer(idx, parseInt(q.correct), q.id, btn);
+                btn.onclick = () => submitAnswer(idx, q.correct, String(q.id), btn);
                 optsContainer.appendChild(btn);
             });
 
             clearInterval(quizTimerInterval);
-            let timeLeft = parseInt(q.timer) || 15;
+            let timeLeft = parseInt(q.timer, 10) || 15;
             const timerEl = document.getElementById('q-timer');
             timerEl.innerText = timeLeft;
             
@@ -1038,19 +1197,21 @@
                 timerEl.innerText = timeLeft;
                 if(timeLeft <= 0) {
                     clearInterval(quizTimerInterval);
-                    showToast("Time's up!", "warning");
-                    submitAnswer(-1, parseInt(q.correct), q.id, null); 
+                    showToast("Time's up! Moving to next question...", "warning");
+                    submitAnswer(-1, q.correct, String(q.id), null); 
                 }
             }, 1000);
         }
 
         async function submitAnswer(selectedIdx, correctIdx, quizId, btnEl) {
+            if (isSubmittingQuiz || !currentUser || !quizId || quizId === 'undefined') return;
+            isSubmittingQuiz = true;
             clearInterval(quizTimerInterval);
             
             const buttons = document.getElementById('q-options').children;
             Array.from(buttons).forEach(b => b.style.pointerEvents = 'none');
 
-            const isCorrect = (selectedIdx === correctIdx);
+            const isCorrect = (Number(selectedIdx) === Number(correctIdx));
             
             if(btnEl) {
                 if(isCorrect) {
@@ -1067,138 +1228,463 @@
                 buttons[correctIdx].classList.add('bg-green-600/30', 'border-green-500');
             }
 
-            let newScore = (currentUser.score || 0) + (isCorrect ? 1 : 0);
+            // 1. Update local state immediately
+            const newScore = (Number(currentUser.score) || 0) + (isCorrect ? 1 : 0);
             currentUser.score = newScore;
-            
-            if (!currentUser.answered) currentUser.answered = {};
-            currentUser.answered[quizId] = true;
+            if (!currentUser.answered || typeof currentUser.answered !== 'object') {
+                currentUser.answered = {};
+            }
+            currentUser.answered[String(quizId)] = true;
             
             document.getElementById('user-score-display').innerText = currentUser.score;
             updateQuestProgress();
 
-            // Strict object updates to avoid Firebase array conversion bugs
+            // 2. Persist to Firebase for this specific quiz ID
+            const userId = String(currentUser.id);
             const updates = {};
             updates['score'] = newScore;
-            updates[`answered/${quizId}`] = true;
+            updates[`answered/${String(quizId)}`] = true;
 
-            update(ref(db, `users/${currentUser.id}`), updates).catch(e => {
+            try {
+                await update(ref(db, `users/${userId}`), updates);
+            } catch (e) {
                 console.error("Error saving answer:", e);
-                showToast("Network error, answer might not be saved.", "error");
-            });
+            }
 
+            // 3. Advance directly to next unanswered question after 600ms feedback highlight
             setTimeout(() => {
+                isSubmittingQuiz = false;
                 initQuizPlay();
-            }, 1500);
+            }, 600);
         }
 
-        // --- CERTIFICATE GENERATION ---
-        window.generateCert = function(tierName, tierColor, reqScore) {
-            if(!currentUser) return;
-
-            if(currentUser.score < reqScore) {
-                showToast(`Keep going! You need at least ${reqScore} correct answers to unlock the ${tierName} Certificate.`, 'warning');
-                return;
+        // --- CERTIFICATE GENERATION (website-bg.jpeg + logosigma.png + Professional Fonts) ---
+        const CERT_TIERS = {
+            IRON: {
+                key: 'IRON',
+                title: 'Iron Certificate',
+                badge: 'IRON TIER',
+                color: '#E2E8F0',
+                secondary: '#94A3B8',
+                req: 10
+            },
+            GOLD: {
+                key: 'GOLD',
+                title: 'Gold Certificate',
+                badge: 'GOLD TIER',
+                color: '#FACC15',
+                secondary: '#EAB308',
+                req: 20
+            },
+            DIAMOND: {
+                key: 'DIAMOND',
+                title: 'Diamond Certificate',
+                badge: 'DIAMOND TIER',
+                color: '#38BDF8',
+                secondary: '#0284C7',
+                req: 30
+            },
+            NETHERITE: {
+                key: 'NETHERITE',
+                title: 'Netherite Certificate',
+                badge: 'NETHERITE TIER',
+                color: '#C084FC',
+                secondary: '#9333EA',
+                req: 50
             }
-            
-            showToast(`Generating ${tierName} Certificate...`, 'info');
-            
-            const canvas = document.getElementById('cert-canvas');
-            const ctx = canvas.getContext('2d');
-            
-            ctx.fillStyle = '#0a0a0a'; 
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.lineWidth = 15;
-            ctx.strokeStyle = tierColor;
-            ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
-            ctx.lineWidth = 4;
-            ctx.strokeStyle = '#333';
-            ctx.strokeRect(70, 70, canvas.width - 140, canvas.height - 140);
-
-            ctx.fillStyle = tierColor;
-            ctx.fillRect(30, 30, 60, 60);
-            ctx.fillRect(canvas.width - 90, 30, 60, 60);
-            ctx.fillRect(30, canvas.height - 90, 60, 60);
-            ctx.fillRect(canvas.width - 90, canvas.height - 90, 60, 60);
-
-            for(let i=0; i<100; i++) {
-                ctx.fillStyle = `rgba(255,255,255,0.05)`;
-                ctx.beginPath();
-                ctx.arc(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*5, 0, Math.PI*2);
-                ctx.fill();
-            }
-
-            const renderTextAndOutput = (logoLoaded) => {
-                ctx.textAlign = 'center';
-                
-                if (!logoLoaded) {
-                    ctx.fillStyle = tierColor;
-                    ctx.font = '900 70px "Poppins", sans-serif';
-                    ctx.fillText('SIGMA SMP', canvas.width/2, 200);
-                }
-                
-                ctx.fillStyle = tierColor;
-                ctx.font = '800 65px "Poppins", sans-serif';
-                ctx.letterSpacing = "5px"; 
-                ctx.fillText(`${tierName} FAN CERTIFICATE`, canvas.width/2, 480);
-
-                ctx.fillStyle = '#888';
-                ctx.font = '400 30px "Poppins", sans-serif';
-                ctx.fillText('PROUDLY PRESENTED TO', canvas.width/2, 560);
-
-                ctx.fillStyle = '#ffffff';
-                ctx.font = '900 90px "Poppins", sans-serif';
-                ctx.shadowColor = tierColor;
-                ctx.shadowBlur = 25;
-                ctx.fillText(currentUser.discordId.toUpperCase(), canvas.width/2, 690);
-                ctx.shadowBlur = 0;
-
-                ctx.fillStyle = tierColor;
-                ctx.font = 'italic 500 45px "Poppins", sans-serif';
-                ctx.fillText('"You are a legendary fan!"', canvas.width/2, 800);
-
-                ctx.fillStyle = '#ccc'; 
-                ctx.font = '600 35px "Poppins", sans-serif';
-                ctx.fillText(`Quiz Score: ${currentUser.score} (${tierName} Tier)`, canvas.width/2, 900);
-                
-                ctx.fillStyle = '#666';
-                ctx.font = '400 20px "Poppins", sans-serif';
-                ctx.fillText(`Date of Issue: ${new Date().toLocaleDateString()}`, canvas.width/2, 980);
-
-                try {
-                    const dataUrl = canvas.toDataURL('image/png');
-                    const link = document.createElement('a');
-                    link.download = `Sigma_${tierName}_Certificate_${currentUser.discordId}.png`;
-                    link.href = dataUrl;
-                    link.click();
-                    showToast(`${tierName} Certificate Downloaded!`, 'success');
-                } catch(e) {
-                    console.warn("Canvas tainted, cannot auto download", e);
-                    showToast("Browser security prevented automatic download.", "error");
-                }
-            };
-
-            const logo = new Image();
-            logo.crossOrigin = "Anonymous";
-            logo.src = './logosigma.png';
-            
-            logo.onload = () => {
-                const lw = 500;
-                const lh = (logo.height / logo.width) * lw;
-                ctx.drawImage(logo, (canvas.width - lw)/2, 120, lw, lh);
-                renderTextAndOutput(true);
-            };
-            
-            logo.onerror = () => {
-                renderTextAndOutput(false);
-            };
         };
 
-        // --- ADMIN LOGIC ---
+        window.closeCertModal = () => {
+            const modal = document.getElementById('cert-preview-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        };
+
+        // Helper for rounded rectangles on Canvas
+        function drawRoundedRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        // Untainted pixel-art recreation of website-bg.jpeg (Voxel Cave Framing Sunset Sky & Clouds) for file:// PNG export fallback
+        function drawVoxelSunsetBackgroundFallback(ctx, W, H) {
+            // 1. Sunset Sky Gradient (Purple-Blue Top -> Warm Peach-Orange Horizon)
+            const skyGrad = ctx.createLinearGradient(0, 0, 0, H);
+            skyGrad.addColorStop(0, '#5A54B8');
+            skyGrad.addColorStop(0.45, '#8F75A8');
+            skyGrad.addColorStop(0.75, '#C99672');
+            skyGrad.addColorStop(1, '#E5AB65');
+            ctx.fillStyle = skyGrad;
+            ctx.fillRect(0, 0, W, H);
+
+            // 2. Blocky Isometric Sunset Clouds
+            const clouds = [
+                { x: 180, y: 150, w: 170, h: 24 },
+                { x: 340, y: 220, w: 130, h: 20 },
+                { x: 780, y: 175, w: 210, h: 26 },
+                { x: 240, y: 330, w: 180, h: 18 },
+                { x: 640, y: 270, w: 110, h: 18 },
+                { x: 460, y: 380, w: 140, h: 16 },
+                { x: 820, y: 340, w: 160, h: 20 }
+            ];
+            clouds.forEach(c => {
+                ctx.fillStyle = 'rgba(182, 164, 224, 0.65)';
+                ctx.fillRect(c.x, c.y, c.w, c.h);
+                ctx.fillStyle = 'rgba(140, 120, 190, 0.55)';
+                ctx.fillRect(c.x + 8, c.y + c.h, c.w - 8, 8);
+            });
+
+            // 3. Top Hanging Brown Voxel Cave Pillars
+            const topPillars = [
+                [0, 260], [40, 220], [80, 190], [120, 140], [160, 170], [200, 100],
+                [240, 130], [280, 155], [320, 145], [360, 115], [400, 95], [440, 70],
+                [480, 105], [520, 125], [560, 95], [600, 110], [640, 135], [680, 155],
+                [720, 130], [760, 95], [800, 75], [840, 115], [880, 135], [920, 110],
+                [960, 165], [1000, 195], [1040, 175], [1080, 225], [1120, 260], [1160, 310]
+            ];
+            topPillars.forEach(([px, py], i) => {
+                ctx.fillStyle = i % 2 === 0 ? '#5C3A08' : '#4A2E05';
+                ctx.fillRect(px, 0, 42, py);
+                ctx.fillStyle = '#734B10';
+                ctx.fillRect(px, py - 12, 42, 12);
+            });
+
+            // 4. Bottom & Side Mossy Green/Brown Voxel Blocks Framing the Opening
+            const bottomBlocks = [
+                [0, 440], [40, 480], [80, 460], [120, 510], [160, 560], [200, 610],
+                [240, 660], [280, 635], [320, 680], [360, 695], [400, 660], [440, 705],
+                [480, 675], [520, 715], [560, 735], [600, 750], [640, 720], [680, 745],
+                [720, 710], [760, 740], [800, 690], [840, 635], [880, 660], [920, 595],
+                [960, 615], [1000, 540], [1040, 505], [1080, 445], [1120, 385], [1160, 340]
+            ];
+            bottomBlocks.forEach(([bx, by], i) => {
+                // Top grass face
+                ctx.fillStyle = i % 2 === 0 ? '#8FA832' : '#7A9225';
+                ctx.fillRect(bx, by, 42, 18);
+                // Dirt/Stone column below
+                ctx.fillStyle = i % 2 === 0 ? '#5C400C' : '#493107';
+                ctx.fillRect(bx, by + 18, 42, H - by);
+            });
+        }
+
+        // Untainted replica of logosigma.png ONLY used if local file:// blocks toDataURL export
+        function drawCleanTopSigmaLogoFallback(ctx, centerX, topY) {
+            ctx.save();
+            // 3D Dark Maroon Block Extrusion behind "SIGMA"
+            const boxW = 310, boxH = 74;
+            ctx.fillStyle = '#380C05';
+            ctx.strokeStyle = '#1C0502';
+            ctx.lineWidth = 4;
+            ctx.fillRect(centerX - boxW / 2, topY + 20, boxW, boxH);
+            ctx.strokeRect(centerX - boxW / 2, topY + 20, boxW, boxH);
+
+            // Golden Blocky "SIGMA" Typography
+            ctx.font = '900 58px "Montserrat", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#92400E';
+            ctx.fillText('SIGMA', centerX + 3, topY + 60);
+
+            const goldGrad = ctx.createLinearGradient(centerX, topY + 24, centerX, topY + 86);
+            goldGrad.addColorStop(0, '#FEF08A');
+            goldGrad.addColorStop(0.5, '#FACC15');
+            goldGrad.addColorStop(1, '#D97706');
+            ctx.fillStyle = goldGrad;
+            ctx.fillText('SIGMA', centerX, topY + 56);
+
+            // Pixel Sunglasses on top of SIGMA
+            const gX = centerX - 85, gY = topY + 2;
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(gX, gY, 170, 8);
+            ctx.fillRect(gX + 8, gY + 8, 64, 19);
+            ctx.fillRect(gX + 14, gY + 27, 50, 6);
+            ctx.fillRect(gX + 98, gY + 8, 64, 19);
+            ctx.fillRect(gX + 104, gY + 27, 50, 6);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(gX + 18, gY + 11, 7, 7);
+            ctx.fillRect(gX + 25, gY + 18, 7, 7);
+            ctx.fillRect(gX + 32, gY + 11, 7, 7);
+            ctx.fillRect(gX + 108, gY + 11, 7, 7);
+            ctx.fillRect(gX + 115, gY + 18, 7, 7);
+            ctx.fillRect(gX + 122, gY + 11, 7, 7);
+
+            // Metallic Silver "SMP" Badge below SIGMA
+            const smpW = 132, smpH = 36;
+            ctx.fillStyle = '#0F172A';
+            ctx.fillRect(centerX - smpW / 2, topY + 86, smpW, smpH);
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(centerX - smpW / 2, topY + 86, smpW, smpH);
+
+            ctx.font = '900 26px "Montserrat", sans-serif';
+            ctx.fillStyle = '#F8FAFC';
+            ctx.fillText('SMP', centerX, topY + 105);
+            ctx.restore();
+        }
+
+        // Renders the complete 1200x800 certificate onto the given canvas (NO background watermark logo!)
+        function renderCertificateCanvas(targetCanvas, tierObj, recipientName, quizCount, bgImgElement, logoImgElement) {
+            const ctx = targetCanvas.getContext('2d');
+            const W = targetCanvas.width;
+            const H = targetCanvas.height;
+
+            ctx.clearRect(0, 0, W, H);
+
+            // 1. Draw website-bg.jpeg Full Background (or voxel sunset fallback if unavailable)
+            if (bgImgElement) {
+                ctx.drawImage(bgImgElement, 0, 0, W, H);
+            } else {
+                drawVoxelSunsetBackgroundFallback(ctx, W, H);
+            }
+
+            // Subtle dark vignette around edges so the cave background pops while framing the card
+            const radGrad = ctx.createRadialGradient(W / 2, H / 2, 180, W / 2, H / 2, W * 0.72);
+            radGrad.addColorStop(0, 'rgba(6, 10, 20, 0.25)');
+            radGrad.addColorStop(1, 'rgba(3, 6, 12, 0.65)');
+            ctx.fillStyle = radGrad;
+            ctx.fillRect(0, 0, W, H);
+
+            // 2. Refined Semi-Transparent Dark Glass Certificate Card in the Center
+            const cardX = 85, cardY = 55, cardW = W - 170, cardH = H - 110;
+            ctx.save();
+            drawRoundedRect(ctx, cardX, cardY, cardW, cardH, 24);
+            ctx.fillStyle = 'rgba(10, 14, 26, 0.76)';
+            ctx.fill();
+
+            // Outer Tier Border
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = tierObj.color;
+            ctx.stroke();
+
+            // Inner Subtle Gold/Tier Hairline Border
+            drawRoundedRect(ctx, cardX + 14, cardY + 14, cardW - 28, cardH - 28, 16);
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+            ctx.stroke();
+            ctx.restore();
+
+            // Elegant Corner Accents on the Card
+            const cLen = 32;
+            ctx.fillStyle = tierObj.color;
+            // Top-Left
+            ctx.fillRect(cardX - 2, cardY - 2, cLen, 7);
+            ctx.fillRect(cardX - 2, cardY - 2, 7, cLen);
+            // Top-Right
+            ctx.fillRect(cardX + cardW - cLen + 2, cardY - 2, cLen, 7);
+            ctx.fillRect(cardX + cardW - 5, cardY - 2, 7, cLen);
+            // Bottom-Left
+            ctx.fillRect(cardX - 2, cardY + cardH - 5, cLen, 7);
+            ctx.fillRect(cardX - 2, cardY + cardH - cLen + 2, 7, cLen);
+            // Bottom-Right
+            ctx.fillRect(cardX + cardW - cLen + 2, cardY + cardH - 5, cLen, 7);
+            ctx.fillRect(cardX + cardW - 5, cardY + cardH - cLen + 2, 7, cLen);
+
+            // 3. ONLY Official Sigma SMP Logo at Top Center (NO background logo watermark!)
+            if (logoImgElement) {
+                const maxLogoH = 130;
+                const ratio = (logoImgElement.naturalWidth || 300) / (logoImgElement.naturalHeight || 180);
+                const drawH = maxLogoH;
+                const drawW = drawH * ratio;
+                ctx.drawImage(logoImgElement, (W - drawW) / 2, 82, drawW, drawH);
+            } else {
+                drawCleanTopSigmaLogoFallback(ctx, W / 2, 82);
+            }
+
+            // 4. Tier Title in Professional 'Cinzel' Serif Font
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'alphabetic';
+            ctx.save();
+            ctx.fillStyle = tierObj.color;
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+            ctx.shadowBlur = 14;
+            ctx.font = '800 50px "Cinzel", Georgia, serif';
+            ctx.fillText(tierObj.title.toUpperCase(), W / 2, 272);
+            ctx.restore();
+
+            // 5. Subtitle in 'Montserrat'
+            ctx.fillStyle = '#CBD5E1';
+            ctx.font = '600 16px "Montserrat", sans-serif';
+            ctx.letterSpacing = '4px';
+            ctx.fillText('THIS CERTIFICATE IS PROUDLY PRESENTED TO', W / 2, 318);
+            ctx.letterSpacing = '0px';
+
+            // Decorative Divider Line
+            ctx.strokeStyle = tierObj.color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(W / 2 - 180, 336);
+            ctx.lineTo(W / 2 + 180, 336);
+            ctx.stroke();
+
+            // 6. Recipient Discord Name in Bold 'Montserrat'
+            ctx.save();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.shadowColor = tierObj.color;
+            ctx.shadowBlur = 20;
+            ctx.font = '900 62px "Montserrat", sans-serif';
+            ctx.fillText(String(recipientName).toUpperCase(), W / 2, 418);
+            ctx.restore();
+
+            // 7. Accomplishment Line ("You have successfully completed [X] quiz")
+            ctx.fillStyle = '#F8FAFC';
+            ctx.font = '700 30px "Plus Jakarta Sans", "Montserrat", sans-serif';
+            ctx.fillText(`You have successfully completed ${quizCount} quiz`, W / 2, 488);
+
+            // 8. Fan Recognition Quote ("You are the biggest fan!")
+            ctx.fillStyle = tierObj.color;
+            ctx.font = 'italic 700 32px "Montserrat", sans-serif';
+            ctx.fillText('"You are the biggest fan!"', W / 2, 542);
+
+            // 9. Bottom Signature & Seal Row (Sigma SMP & Jayesh Unfiltered)
+            const footerY = 678;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2;
+
+            // Left Signature: Sigma SMP
+            ctx.beginPath();
+            ctx.moveTo(175, footerY - 34);
+            ctx.lineTo(435, footerY - 34);
+            ctx.stroke();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '800 21px "Cinzel", serif';
+            ctx.fillText('Sigma SMP', 305, footerY - 6);
+            ctx.fillStyle = '#94A3B8';
+            ctx.font = '600 13px "Montserrat", sans-serif';
+            ctx.fillText('OFFICIAL COMMUNITY', 305, footerY + 16);
+
+            // Center Tier Seal Badge
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(W / 2, footerY - 22, 44, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+            ctx.fill();
+            ctx.lineWidth = 3.5;
+            ctx.strokeStyle = tierObj.color;
+            ctx.stroke();
+            ctx.fillStyle = tierObj.color;
+            ctx.font = '800 12px "Montserrat", sans-serif';
+            ctx.fillText(tierObj.badge, W / 2, footerY - 25);
+            ctx.fillStyle = '#E2E8F0';
+            ctx.font = '600 11px "Montserrat", sans-serif';
+            ctx.fillText(new Date().toLocaleDateString(), W / 2, footerY - 8);
+            ctx.restore();
+
+            // Right Signature: Jayesh Unfiltered (Replaced KtGamers as requested)
+            ctx.beginPath();
+            ctx.moveTo(W - 435, footerY - 34);
+            ctx.lineTo(W - 175, footerY - 34);
+            ctx.stroke();
+            ctx.fillStyle = '#FF7A29';
+            ctx.font = '800 21px "Cinzel", serif';
+            ctx.fillText('Jayesh Unfiltered', W - 305, footerY - 6);
+            ctx.fillStyle = '#94A3B8';
+            ctx.font = '600 13px "Montserrat", sans-serif';
+            ctx.fillText('OFFICIAL CREATOR & STAFF', W - 305, footerY + 16);
+        }
+
+        // Helper to load an image WITHOUT crossOrigin so local file:// never blocks website-bg.jpeg or logosigma.png
+        function loadLocalSafeImage(src) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = () => resolve(null);
+                img.src = src;
+            });
+        }
+
+        // Core generator that works for both current user and Admin panel user rows
+        window.generateCertificateForUser = async function(discordId, quizCount, tierKey, isAdminOverride = false) {
+            const tierObj = CERT_TIERS[tierKey] || CERT_TIERS.IRON;
+            const numericScore = Number(quizCount) || 0;
+
+            if (!isAdminOverride && numericScore < tierObj.req) {
+                showToast(`You need at least ${tierObj.req} correct answers to unlock the ${tierObj.title}!`, 'warning');
+                return;
+            }
+
+            showToast(`Generating ${tierObj.title} for ${discordId}...`, 'info');
+
+            // Ensure Google Fonts ('Cinzel', 'Montserrat', 'Plus Jakarta Sans') are ready before drawing
+            if (document.fonts && document.fonts.ready) {
+                try { await document.fonts.ready; } catch (e) {}
+            }
+
+            const [bgImg, logoImg] = await Promise.all([
+                loadLocalSafeImage('website-bg.jpeg'),
+                loadLocalSafeImage('logosigma.png')
+            ]);
+
+            const safeUser = String(discordId || 'Fan').replace(/[^a-zA-Z0-9_-]/g, '_');
+            const fileName = `SigmaSMP_${tierObj.title.replace(/\s+/g, '_')}_${safeUser}.png`;
+
+            // 1. Render directly onto the visible modal canvas so the user ALWAYS sees the real website-bg.jpeg & logosigma.png without any duplicate overlay
+            const displayCanvas = document.getElementById('cert-display-canvas');
+            if (displayCanvas) {
+                renderCertificateCanvas(displayCanvas, tierObj, discordId, numericScore, bgImg, logoImg);
+            }
+
+            // 2. Generate downloadable PNG data URL (if file:// taints displayCanvas, generate untainted PNG with voxel background)
+            let downloadDataUrl = '';
+            try {
+                downloadDataUrl = displayCanvas.toDataURL('image/png');
+            } catch (securityErr) {
+                const untaintedCanvas = document.createElement('canvas');
+                untaintedCanvas.width = 1200;
+                untaintedCanvas.height = 800;
+                renderCertificateCanvas(untaintedCanvas, tierObj, discordId, numericScore, null, null);
+                downloadDataUrl = untaintedCanvas.toDataURL('image/png');
+            }
+
+            // 3. Trigger automatic PNG download
+            const link = document.createElement('a');
+            link.download = fileName;
+            link.href = downloadDataUrl;
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => link.remove(), 200);
+
+            // 4. Open Preview Modal
+            const previewModal = document.getElementById('cert-preview-modal');
+            const downloadAgainBtn = document.getElementById('cert-download-again-btn');
+            const modalTitle = document.getElementById('cert-modal-title');
+
+            if (downloadAgainBtn) {
+                downloadAgainBtn.href = downloadDataUrl;
+                downloadAgainBtn.download = fileName;
+            }
+            if (modalTitle) {
+                modalTitle.innerHTML = `<i class="ph-fill ph-medal" style="color:${tierObj.color}"></i> ${tierObj.title} — ${discordId}`;
+            }
+            if (previewModal) {
+                previewModal.classList.remove('hidden');
+                previewModal.classList.add('flex');
+            }
+
+            showToast(`${tierObj.title} downloaded!`, 'success');
+        };
+
+        window.generateCert = function(tierName, tierColor, reqScore) {
+            if (!currentUser) return;
+            window.generateCertificateForUser(currentUser.discordId, currentUser.score || 0, tierName, false);
+        };
+
+        // --- ADMIN LOGIC (Passcode: 9822) ---
         window.verifyAdmin = () => {
-            const val = document.getElementById('admin-passcode').value;
+            const val = document.getElementById('admin-passcode').value.trim();
             if (val === ADMIN_PASSCODE) {
                 document.getElementById('admin-login-modal').classList.add('hidden');
+                document.getElementById('admin-login-modal').classList.remove('flex');
                 document.getElementById('admin-passcode').value = '';
                 switchView('view-admin');
                 initAdminDash();
@@ -1209,33 +1695,42 @@
         };
 
         window.logoutAdmin = () => {
-            switchView('view-dashboard');
-        }
+            if (currentUser) {
+                switchView('view-dashboard');
+            } else {
+                switchView('view-login');
+            }
+        };
         
         function initAdminDash() {
             onValue(ref(db, 'quizzes'), (snap) => {
                 const list = document.getElementById('adm-quiz-list');
+                const countBadge = document.getElementById('adm-quiz-count');
                 list.innerHTML = '';
                 if(!snap.exists()) {
-                    list.innerHTML = '<p class="text-gray-500 text-sm p-4">No questions found.</p>';
+                    countBadge.innerText = '0 Questions';
+                    list.innerHTML = '<p class="text-gray-500 text-sm p-4">No questions found. Add some above!</p>';
                     return;
                 }
-                snap.forEach(child => {
-                    const q = child.val();
+                const entries = Object.entries(snap.val());
+                countBadge.innerText = `${entries.length} Questions`;
+
+                entries.forEach(([key, rawQ]) => {
+                    const q = normalizeQuiz(key, rawQ);
                     const div = document.createElement('div');
-                    div.className = "bg-black/30 p-4 rounded-xl flex justify-between items-center border border-white/5";
+                    div.className = "bg-black/35 p-4 rounded-xl flex justify-between items-center border border-white/5";
                     div.innerHTML = `
                         <div class="flex-grow pr-4 overflow-hidden">
-                            <p class="text-sm font-medium text-white truncate mb-1">${q.question}</p>
-                            <p class="text-xs text-gray-500 truncate">Correct: Option ${parseInt(q.correct)+1}</p>
+                            <p class="text-sm font-semibold text-white truncate mb-1">${q.question}</p>
+                            <p class="text-xs text-gray-400">Correct: <span class="text-green-400 font-semibold">Option ${q.correct + 1}</span> (${q.options[q.correct] || ''}) | Timer: ${q.timer}s</p>
                         </div>
-                        <button class="bg-red-500/20 text-red-500 hover:bg-red-500 hover:text-white p-2 rounded-lg transition shrink-0 cursor-pointer" data-id="${child.key}" title="Delete">
+                        <button class="bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white p-2.5 rounded-lg transition shrink-0 cursor-pointer" data-id="${key}" title="Delete Question">
                             <i class="ph-bold ph-trash"></i>
                         </button>
                     `;
                     div.querySelector('button').onclick = function() {
                         const targetId = this.getAttribute('data-id');
-                        showConfirm("Delete this question forever?", () => {
+                        showConfirm("Delete this question permanently?", () => {
                             remove(ref(db, `quizzes/${targetId}`));
                             showToast("Question deleted", "success");
                         });
@@ -1253,19 +1748,35 @@
                 }
                 snap.forEach(child => {
                     const u = child.val();
+                    const userScore = Number(u.score) || 0;
+                    const answeredCount = Object.keys(cleanAnsweredMap(u.answered)).length;
                     const div = document.createElement('div');
-                    div.className = "bg-black/30 p-4 rounded-xl flex justify-between items-center border border-white/5";
+                    div.className = "bg-black/35 p-4 rounded-xl flex flex-col gap-3 border border-white/5";
                     div.innerHTML = `
-                        <div class="flex-grow">
-                            <p class="text-sm font-bold text-white mb-1"><i class="ph-fill ph-discord-logo text-blue-400"></i> ${u.discordId}</p>
-                            <p class="text-xs text-gray-400">Score: <span class="text-orange-400 font-bold">${u.score || 0}</span> | PIN: <span class="font-mono bg-black/50 px-1 rounded border border-white/10 tracking-widest">${u.pin}</span></p>
+                        <div class="flex justify-between items-center gap-2">
+                            <div class="flex-grow overflow-hidden">
+                                <p class="text-sm font-bold text-white mb-1 truncate"><i class="ph-fill ph-discord-logo text-blue-400"></i> ${u.discordId}</p>
+                                <p class="text-xs text-gray-400">Score: <span class="text-orange-400 font-bold">${userScore}</span> | Answered: ${answeredCount} | PIN: <span class="font-mono bg-black/50 px-1.5 py-0.5 rounded border border-white/10">${u.pin}</span></p>
+                            </div>
+                            <div class="flex gap-1.5 shrink-0">
+                                <button class="bg-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-white p-2 rounded-lg transition cursor-pointer" onclick="openEditPin('${child.key}', '${u.discordId}')" title="Change PIN">
+                                    <i class="ph-bold ph-pencil-simple"></i>
+                                </button>
+                                <button class="bg-red-500/20 text-red-500 hover:bg-red-500 hover:text-white p-2 rounded-lg transition cursor-pointer" onclick="deleteUser('${child.key}')" title="Delete User">
+                                    <i class="ph-bold ph-trash"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="flex gap-2">
-                            <button class="bg-blue-500/20 text-blue-400 hover:bg-blue-500 hover:text-white p-2 rounded-lg transition cursor-pointer" onclick="openEditPin('${child.key}', '${u.discordId}')" title="Change PIN">
-                                <i class="ph-bold ph-pencil-simple"></i>
-                            </button>
-                            <button class="bg-red-500/20 text-red-500 hover:bg-red-500 hover:text-white p-2 rounded-lg transition cursor-pointer" onclick="deleteUser('${child.key}')" title="Delete User">
-                                <i class="ph-bold ph-trash"></i>
+                        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+                            <select id="adm-cert-tier-${child.key}" class="input-glass text-xs rounded-lg px-2.5 py-2 flex-grow outline-none cursor-pointer">
+                                <option value="AUTO">Auto Tier (Score: ${userScore})</option>
+                                <option value="IRON">Iron Certificate (10+)</option>
+                                <option value="GOLD">Gold Certificate (20+)</option>
+                                <option value="DIAMOND">Diamond Certificate (30+)</option>
+                                <option value="NETHERITE">Netherite Certificate (50+)</option>
+                            </select>
+                            <button onclick="adminDownloadUserCert('${child.key}', '${String(u.discordId).replace(/'/g, "\\'")}', ${userScore})" class="bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition flex items-center gap-1.5 shrink-0 cursor-pointer shadow">
+                                <i class="ph-bold ph-download-simple"></i> Download Certificate
                             </button>
                         </div>
                     `;
@@ -1273,6 +1784,18 @@
                 });
             });
         }
+
+        window.adminDownloadUserCert = (uid, discordId, userScore) => {
+            const selectEl = document.getElementById(`adm-cert-tier-${uid}`);
+            let chosenTier = selectEl ? selectEl.value : 'AUTO';
+            if (chosenTier === 'AUTO') {
+                if (userScore >= 50) chosenTier = 'NETHERITE';
+                else if (userScore >= 30) chosenTier = 'DIAMOND';
+                else if (userScore >= 20) chosenTier = 'GOLD';
+                else chosenTier = 'IRON';
+            }
+            window.generateCertificateForUser(discordId, userScore, chosenTier, true);
+        };
 
         document.getElementById('btn-add-q').onclick = () => {
             const q = document.getElementById('adm-q').value.trim();
@@ -1282,27 +1805,34 @@
                 document.getElementById('adm-opt-2').value.trim(),
                 document.getElementById('adm-opt-3').value.trim()
             ];
-            const correct = document.getElementById('adm-correct').value;
-            const timer = document.getElementById('adm-timer').value || 15;
-            const releaseDate = document.getElementById('adm-release-date').value;
+            const correct = parseInt(document.getElementById('adm-correct').value, 10);
+            const timer = parseInt(document.getElementById('adm-timer').value, 10) || 15;
 
             if(!q || opts.some(o => !o)) {
-                showToast("Please fill all fields to add a question.", "warning");
+                showToast("Please fill the question and all 4 options.", "warning");
                 return;
             }
 
             push(ref(db, 'quizzes'), {
                 question: q,
+                options: opts,
                 optA: opts[0], optB: opts[1], optC: opts[2], optD: opts[3],
                 correct: correct,
+                correctIndex: correct,
                 timer: timer,
-                releaseDate: releaseDate,
                 timestamp: Date.now()
             }).then(() => {
                 document.getElementById('adm-q').value = '';
                 document.querySelectorAll('[id^="adm-opt-"]').forEach(el => el.value = '');
-                document.getElementById('adm-release-date').value = '';
-                showToast("Question added successfully!", "success");
+                showToast("Question added! It is now live for all fans.", "success");
+            });
+        };
+
+        window.resetUserQuizzesAdmin = (uid, discordId) => {
+            showConfirm(`Reset answered quiz history for ${discordId} so they can play all quizzes again?`, () => {
+                set(ref(db, `users/${uid}/answered`), {}).then(() => {
+                    showToast(`Quiz history reset for ${discordId}.`, "success");
+                });
             });
         };
 
@@ -1335,6 +1865,12 @@
                 showToast("PIN updated successfully.", "success");
             });
         };
+
+        // Support #admin URL hash shortcut
+        if (window.location.hash === '#admin') {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+            document.getElementById('admin-login-modal').classList.add('flex');
+        }
     </script>
 </body>
 </html>
