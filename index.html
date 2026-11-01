@@ -251,25 +251,24 @@
     <svg class="web-corner web-left" viewBox="0 0 512 512" fill="#fff"><path d="M472,33.5c-37.1-5.1-71-21-98.8-44.5L343.3,20C381.7,50.7,429.2,69,480,69v32c-61.9,0-118-24.8-158.8-65.1L299,65 c48.5,47.8,115.1,77,189,77V174c-81.8,0-155.8-33.1-209.6-86.8l-22.3,22.8c60,59,141.5,96,231.9,96V242 c-102.5,0-195-41.5-262.1-108.6l-22.6,22.6c73,73.1,173.8,118,284.7,118v32c-122.9,0-234.1-49.8-314.9-130.6l-22.6,22.6 c86.9,86.9,207.2,140,339.5,140v31.7c-264.4,0-480-213.9-480-476.3h32c0,246,198,444.3,446,444.3V33.5z"/></svg>
     <svg class="web-corner web-right" viewBox="0 0 512 512" fill="#fff"><path d="M472,33.5c-37.1-5.1-71-21-98.8-44.5L343.3,20C381.7,50.7,429.2,69,480,69v32c-61.9,0-118-24.8-158.8-65.1L299,65 c48.5,47.8,115.1,77,189,77V174c-81.8,0-155.8-33.1-209.6-86.8l-22.3,22.8c60,59,141.5,96,231.9,96V242 c-102.5,0-195-41.5-262.1-108.6l-22.6,22.6c73,73.1,173.8,118,284.7,118v32c-122.9,0-234.1-49.8-314.9-130.6l-22.6,22.6 c86.9,86.9,207.2,140,339.5,140v31.7c-264.4,0-480-213.9-480-476.3h32c0,246,198,444.3,446,444.3V33.5z"/></svg>
 
-    <!-- 1. PERMANENT DISCLAIMER & AUDIO ENTRY MODAL -->
+    <!-- 1. ORIGINAL FAN PROJECT DISCLAIMER MODAL (NO MUSIC) -->
     <div id="view-entry" class="fixed inset-0 z-[200] flex items-center justify-center p-4 backdrop-blur-md bg-black/85 transition-opacity duration-300">
-        <div class="glass max-w-xl w-full p-8 md:p-10 text-center border-t-4 border-orange-500 shadow-[0_0_40px_rgba(255,85,0,0.25)] relative overflow-hidden">
-            <img src="logosigma.png" alt="Sigma SMP" class="h-20 mx-auto mb-4 object-contain drop-shadow-lg" onerror="this.style.display='none'">
-            <h1 class="text-2xl md:text-3xl font-extrabold mb-4 text-white tracking-wide">Official Fan Disclaimer</h1>
-            <div class="bg-black/40 border border-white/10 rounded-xl p-4 mb-6 text-left space-y-2">
-                <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
-                    <strong>Unofficial Fan Project:</strong> Welcome to <em>Sigma SMP - Be a Fan!</em> This website is a strictly non-profit, fan-made community project created with love by <strong>KtGamers</strong>.
+        <div class="glass max-w-xl w-full p-6 sm:p-10 text-center border-t-4 border-orange-500 shadow-[0_0_40px_rgba(255,85,0,0.25)] relative overflow-hidden max-h-[92vh] overflow-y-auto">
+            <img src="logosigma.png" alt="Sigma SMP" class="h-16 sm:h-20 mx-auto mb-4 object-contain drop-shadow-lg" onerror="this.style.display='none'">
+            <div class="inline-flex items-center gap-1.5 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+                <i class="ph-fill ph-shield-check"></i> Official Notice
+            </div>
+            <h1 class="text-xl sm:text-3xl font-extrabold mb-4 text-white tracking-wide">Official Fan Project Disclaimer</h1>
+            <div class="bg-black/45 border border-white/10 rounded-2xl p-4 sm:p-5 mb-6 text-left space-y-3.5">
+                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                    <strong class="text-white">Independent Fan Creation:</strong> 'Be a Fan!' is an unofficial, community-driven project created out of passion for Sigma SMP. The official Sigma SMP staff, administrators, and creators have no involvement in the development or management of this website.
                 </p>
-                <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
-                    <strong>No Official Staff Involvement & Non-Commercial:</strong> The original Sigma SMP staff has no involvement in the development or operation of this website, and no money, payments, or financial transactions are involved in any form.
+                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+                    <strong class="text-white">Non-Profit &amp; Free:</strong> This platform operates strictly on a non-commercial, non-profit basis. There are no monetary transactions, paid features, or financial charges of any kind.
                 </p>
             </div>
-            <p class="text-gray-400 text-xs md:text-sm mb-6 flex items-center justify-center gap-2">
-                <i class="ph-fill ph-music-notes text-orange-500 text-lg"></i>
-                Clicking below will start the haunted Halloween background music and enter the platform.
-            </p>
-            <button id="btn-accept-entry" onclick="enterExperience()" class="btn-primary w-full py-4 rounded-xl font-bold text-base md:text-lg uppercase tracking-wider shadow-[0_0_20px_rgba(255,85,0,0.4)] cursor-pointer">
-                Accept & Enter
+            <button id="btn-accept-entry" onclick="enterExperience()" class="btn-primary w-full py-3.5 sm:py-4 rounded-xl font-bold text-sm sm:text-base uppercase tracking-wider shadow-[0_0_20px_rgba(255,85,0,0.4)] cursor-pointer flex items-center justify-center gap-2">
+                <span>I Understand &amp; Enter</span> <i class="ph-bold ph-arrow-right"></i>
             </button>
         </div>
     </div>
@@ -322,64 +321,123 @@
     <!-- 3. MAIN DASHBOARD VIEW (Fixed Header so Navbar is NEVER clipped) -->
     <div id="view-dashboard" class="app-view flex-col w-full min-h-screen justify-between">
         <!-- Top Header Wrapper -->
-        <header class="w-full sticky top-0 z-40 bg-black/50 backdrop-blur-md border-b border-white/5 pb-3">
+        <header class="w-full sticky top-0 z-40 bg-black/70 backdrop-blur-xl border-b border-white/10">
             <div class="top-banner">
                 <i class="ph-fill ph-sparkle"></i> EVERY SUNDAY 12 QUIZ <i class="ph-fill ph-sparkle"></i>
             </div>
 
-            <nav class="glass max-w-7xl mx-4 lg:mx-auto mt-3 px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3 rounded-2xl">
-                <div class="flex items-center gap-3">
-                    <img src="logosigma.png" alt="Sigma SMP" class="h-9 sm:h-10 object-contain drop-shadow-lg" onerror="this.style.display='none'">
-                    <div class="h-7 w-px bg-white/20 hidden sm:block"></div>
-                    <div class="flex flex-col text-left">
-                        <span class="text-[11px] text-gray-400 font-medium leading-tight">Logged in as</span>
-                        <span id="nav-user-id" class="text-xs sm:text-sm font-bold text-orange-400 truncate max-w-[140px]">User</span>
+            <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5">
+                <nav class="glass px-4 sm:px-6 py-3 flex justify-between items-center rounded-2xl relative">
+                    <!-- Brand & Desktop User Info -->
+                    <div class="flex items-center gap-3">
+                        <img src="logosigma.png" alt="Sigma SMP" class="h-8 sm:h-10 object-contain drop-shadow-lg" onerror="this.style.display='none'">
+                        <div class="h-7 w-px bg-white/15 hidden sm:block"></div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[10px] sm:text-[11px] text-gray-400 font-medium leading-tight">Logged in as</span>
+                            <span id="nav-user-id" class="text-xs sm:text-sm font-bold text-orange-400 truncate max-w-[130px] sm:max-w-[160px]">User</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="flex flex-wrap justify-center gap-1 sm:gap-2 order-3 lg:order-2 w-full lg:w-auto border-t border-white/5 lg:border-none pt-2 lg:pt-0">
-                    <button onclick="switchTab('home')" class="nav-item active" data-tab="home"><i class="ph ph-house mr-1"></i> Home</button>
-                    <button onclick="switchTab('quiz')" class="nav-item" data-tab="quiz"><i class="ph ph-brain mr-1"></i> Quiz</button>
-                    <button onclick="switchTab('cert')" class="nav-item" data-tab="cert"><i class="ph ph-scroll mr-1"></i> Quests</button>
-                    <button onclick="switchTab('giveaway')" class="nav-item" data-tab="giveaway"><i class="ph ph-gift mr-1"></i> Giveaway</button>
-                    <button onclick="switchTab('about')" class="nav-item" data-tab="about"><i class="ph ph-users mr-1"></i> About Us</button>
-                    <button onclick="switchTab('support')" class="nav-item" data-tab="support"><i class="ph ph-lifebuoy mr-1"></i> Support</button>
-                </div>
+                    
+                    <!-- Desktop Horizontal Navigation (md and above) -->
+                    <div class="hidden md:flex items-center gap-1 lg:gap-2">
+                        <button onclick="switchTab('home')" class="nav-item active" data-tab="home"><i class="ph ph-house mr-1"></i> Home</button>
+                        <button onclick="switchTab('quiz')" class="nav-item" data-tab="quiz"><i class="ph ph-brain mr-1"></i> Quiz</button>
+                        <button onclick="switchTab('cert')" class="nav-item" data-tab="cert"><i class="ph ph-scroll mr-1"></i> Quests</button>
+                        <button onclick="switchTab('giveaway')" class="nav-item" data-tab="giveaway"><i class="ph ph-gift mr-1"></i> Giveaway</button>
+                        <button onclick="switchTab('about')" class="nav-item" data-tab="about"><i class="ph ph-users mr-1"></i> About Us</button>
+                        <button onclick="switchTab('support')" class="nav-item" data-tab="support"><i class="ph ph-lifebuoy mr-1"></i> Support</button>
+                    </div>
 
-                <button onclick="logout()" class="text-gray-300 hover:text-red-400 transition flex items-center gap-1.5 text-xs sm:text-sm font-medium order-2 lg:order-3 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer">
-                    <i class="ph ph-sign-out text-base"></i> <span>Logout</span>
-                </button>
-            </nav>
+                    <!-- Desktop Logout Button -->
+                    <button onclick="logout()" class="hidden md:flex text-gray-300 hover:text-red-400 transition items-center gap-1.5 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl bg-white/5 hover:bg-red-500/10 border border-white/10 hover:border-red-500/30 cursor-pointer">
+                        <i class="ph-bold ph-sign-out text-base"></i> <span>Logout</span>
+                    </button>
+
+                    <!-- Mobile 3-Line Hamburger Button (below md) -->
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white transition cursor-pointer" aria-label="Toggle Menu">
+                        <i id="mobile-menu-icon" class="ph-bold ph-list text-2xl"></i>
+                    </button>
+                </nav>
+
+                <!-- Mobile Glassmorphism Dropdown Drawer -->
+                <div id="mobile-menu-drawer" class="hidden md:hidden mt-2 glass p-4 rounded-2xl border border-white/15 shadow-2xl flex-col gap-2 animate-[fadeIn_0.25s_ease]">
+                    <div class="flex items-center justify-between bg-black/40 px-3.5 py-2.5 rounded-xl border border-white/5 mb-1">
+                        <div class="flex items-center gap-2 overflow-hidden">
+                            <i class="ph-fill ph-discord-logo text-orange-400 text-lg shrink-0"></i>
+                            <span id="mobile-nav-user-id" class="text-xs font-bold text-white truncate">User</span>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-wider bg-orange-500/20 text-orange-300 px-2 py-0.5 rounded-full font-bold">Active Fan</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="switchTab('home')" class="nav-item active flex items-center gap-2 text-left py-2.5 px-3 rounded-xl text-sm" data-tab="home">
+                            <i class="ph-fill ph-house text-orange-400 text-base"></i> Home
+                        </button>
+                        <button onclick="switchTab('quiz')" class="nav-item flex items-center gap-2 text-left py-2.5 px-3 rounded-xl text-sm" data-tab="quiz">
+                            <i class="ph-fill ph-brain text-orange-400 text-base"></i> Quiz
+                        </button>
+                        <button onclick="switchTab('cert')" class="nav-item flex items-center gap-2 text-left py-2.5 px-3 rounded-xl text-sm" data-tab="cert">
+                            <i class="ph-fill ph-scroll text-orange-400 text-base"></i> Quests
+                        </button>
+                        <button onclick="switchTab('giveaway')" class="nav-item flex items-center gap-2 text-left py-2.5 px-3 rounded-xl text-sm" data-tab="giveaway">
+                            <i class="ph-fill ph-gift text-orange-400 text-base"></i> Giveaway
+                        </button>
+                        <button onclick="switchTab('about')" class="nav-item flex items-center gap-2 text-left py-2.5 px-3 rounded-xl text-sm" data-tab="about">
+                            <i class="ph-fill ph-users text-orange-400 text-base"></i> About Us
+                        </button>
+                        <button onclick="switchTab('support')" class="nav-item flex items-center gap-2 text-left py-2.5 px-3 rounded-xl text-sm" data-tab="support">
+                            <i class="ph-fill ph-lifebuoy text-orange-400 text-base"></i> Support
+                        </button>
+                    </div>
+
+                    <button onclick="logout()" class="w-full mt-1 py-2.5 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-400 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition cursor-pointer">
+                        <i class="ph-bold ph-sign-out text-base"></i> Logout Account
+                    </button>
+                </div>
+            </div>
         </header>
 
-        <main class="flex-grow flex flex-col w-full max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-8 relative z-10">
+        <main class="flex-grow flex flex-col w-full max-w-7xl mx-auto px-3 sm:px-8 py-5 sm:py-8 relative z-10">
 
             <!-- HOME TAB -->
             <div id="tab-home" class="tab-section active w-full max-w-4xl mx-auto text-center">
-                <div class="glass p-6 sm:p-10 md:p-14 rounded-3xl flex flex-col items-center justify-center relative overflow-hidden">
+                <div class="glass p-5 sm:p-10 md:p-14 rounded-3xl flex flex-col items-center justify-center relative overflow-hidden">
                     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,85,0,0.14)_0%,transparent_70%)] pointer-events-none"></div>
-                    <img src="logosigma.png" alt="Sigma SMP" class="h-28 sm:h-40 md:h-48 mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] object-contain" onerror="this.style.display='none'">
-                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500 mb-5 tracking-widest uppercase drop-shadow-lg">Be a Fan!</h1>
+                    <img src="logosigma.png" alt="Sigma SMP" class="h-24 sm:h-36 md:h-44 mb-3 sm:mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] object-contain" onerror="this.style.display='none'">
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500 mb-4 sm:mb-5 tracking-widest uppercase drop-shadow-lg">Be a Fan!</h1>
                     
-                    <div class="bg-black/40 border border-orange-500/30 px-5 py-2.5 rounded-full inline-flex items-center gap-2.5 shadow-lg mb-5">
+                    <div class="bg-black/45 border border-orange-500/30 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full inline-flex items-center gap-2 shadow-lg mb-6">
                         <i class="ph-fill ph-sparkle text-orange-500"></i>
                         <p class="text-xs sm:text-base md:text-lg text-gray-200 font-bold tracking-wider uppercase">Every sunday 12 quiz</p>
                         <i class="ph-fill ph-sparkle text-orange-500"></i>
                     </div>
 
-                    <!-- S12 Coming Soon -->
-                    <div class="mb-6 bg-black/30 border border-white/5 px-6 py-4 rounded-2xl">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">S12 Coming Soon</h3>
-                        <p class="text-xs sm:text-sm text-gray-400 mt-1">Countdown will start here on official date</p>
+                    <!-- S12 Coming Soon & Upcoming Leaderboard Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mb-6">
+                        <!-- S12 Coming Soon Card -->
+                        <div class="bg-black/40 border border-orange-500/20 p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-center text-center shadow-lg">
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-orange-500/20 text-orange-300 px-2.5 py-0.5 rounded-full mb-2">Next Season</span>
+                            <h3 class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">S12 Coming Soon</h3>
+                            <p id="s12-countdown-display" class="text-xs text-gray-400 mt-1">Countdown will start here on official date</p>
+                        </div>
+
+                        <!-- Upcoming: Leaderboard Card -->
+                        <div class="bg-black/40 border border-yellow-500/25 p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-center text-center shadow-lg relative overflow-hidden">
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-yellow-500/20 text-yellow-300 px-2.5 py-0.5 rounded-full mb-2 flex items-center gap-1">
+                                <i class="ph-fill ph-trophy text-yellow-400"></i> Coming Soon
+                            </span>
+                            <h3 class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Upcoming: Leaderboard</h3>
+                            <p class="text-xs text-gray-400 mt-1">Top quiz solvers will be featured on the fan leaderboard!</p>
+                        </div>
                     </div>
 
-                    <p class="text-sm md:text-base text-gray-300 font-medium mb-7">Official Creator & Staff: <a href="https://youtube.com/@jayeshunfiltered?si=Ps6SddRa-c4cYDuy" target="_blank" class="text-orange-500 font-bold hover:underline">Jayesh Unfiltered</a></p>
+                    <p class="text-xs sm:text-base text-gray-300 font-medium mb-6">Developer/Content: <span class="text-orange-500 font-bold">KtGamers</span></p>
 
-                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center mb-10 max-w-md">
-                        <button onclick="switchTab('quiz')" class="btn-primary flex-1 py-3.5 px-6 rounded-xl font-bold flex items-center justify-center gap-2">
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full justify-center mb-9 max-w-md">
+                        <button onclick="switchTab('quiz')" class="btn-primary flex-1 py-3.5 px-6 rounded-xl font-bold flex items-center justify-center gap-2 text-sm sm:text-base">
                             <i class="ph-bold ph-brain text-xl"></i> Go to Quiz
                         </button>
-                        <button onclick="switchTab('cert')" class="glass-panel flex-1 py-3.5 px-6 rounded-xl font-bold text-white hover:bg-white/10 transition flex items-center justify-center gap-2 border border-white/20 cursor-pointer">
+                        <button onclick="switchTab('cert')" class="glass-panel flex-1 py-3.5 px-6 rounded-xl font-bold text-white hover:bg-white/10 transition flex items-center justify-center gap-2 border border-white/20 cursor-pointer text-sm sm:text-base">
                             <i class="ph-bold ph-scroll text-xl"></i> Go to Quests
                         </button>
                     </div>
@@ -625,9 +683,14 @@
 
         <footer class="mt-auto py-5 text-center border-t border-white/5 bg-black/60 backdrop-blur-md relative z-10 w-full flex flex-col items-center">
             <p class="font-medium text-gray-400 text-sm mb-1.5">Made with love by <span class="text-orange-500 font-bold">KtGamers</span> | All rights reserved</p>
-            <button onclick="document.getElementById('admin-login-modal').classList.remove('hidden'); document.getElementById('admin-login-modal').classList.add('flex')" class="text-gray-500 hover:text-orange-400 transition cursor-pointer p-1" title="Admin Portal">
-                <i class="ph-fill ph-lock-key text-lg"></i>
-            </button>
+            <div class="flex items-center gap-4 mt-1">
+                <button onclick="openDisclaimerModal()" class="text-xs text-gray-500 hover:text-gray-300 transition cursor-pointer underline">
+                    Disclaimer
+                </button>
+                <button onclick="document.getElementById('admin-login-modal').classList.remove('hidden'); document.getElementById('admin-login-modal').classList.add('flex')" class="text-gray-500 hover:text-orange-400 transition cursor-pointer p-1" title="Admin Portal">
+                    <i class="ph-fill ph-lock-key text-lg"></i>
+                </button>
+            </div>
         </footer>
     </div>
 
@@ -639,9 +702,26 @@
                     <h2 class="text-2xl font-bold flex items-center gap-3">
                         <i class="ph-fill ph-shield-star text-red-500"></i> Admin Console
                     </h2>
-                    <p class="text-gray-400 text-sm mt-1">Manage quizzes, countdown timers, and user accounts.</p>
+                    <p class="text-gray-400 text-sm mt-1">Manage quizzes, S12 countdown timer, and user accounts.</p>
                 </div>
                 <button onclick="logoutAdmin()" class="glass-panel px-6 py-2.5 text-sm font-bold hover:bg-white/10 transition rounded-lg text-white cursor-pointer">Exit Console</button>
+            </div>
+
+            <!-- S12 COUNTDOWN MANAGER -->
+            <div class="glass p-5 sm:p-6 mb-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg text-yellow-400 flex items-center gap-2">
+                            <i class="ph-fill ph-timer"></i> S12 Countdown Manager
+                        </h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Set an official S12 launch date/time or clear it to show "Countdown will start here on official date".</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                        <input type="datetime-local" id="adm-s12-date" class="input-glass rounded-lg px-3 py-2 text-xs sm:text-sm outline-none flex-grow sm:flex-grow-0">
+                        <button onclick="saveS12Countdown()" class="bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition cursor-pointer">Save Date</button>
+                        <button onclick="clearS12Countdown()" class="glass-panel hover:bg-red-500/20 text-gray-300 hover:text-red-300 px-3 py-2 rounded-lg text-xs sm:text-sm font-bold transition cursor-pointer">Reset Default</button>
+                    </div>
+                </div>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -789,11 +869,26 @@
         
         const ADMIN_PASSCODE = '9822';
         let quizTimerInterval = null;
+        let s12Interval = null;
+        const DISCLAIMER_STORAGE_KEY = 'sigma_disclaimer_accepted_v3';
 
-        // --- AUDIO INITIALIZATION ---
-        const bgMusic = new Audio('halloweenweb.mp3');
-        bgMusic.loop = true;
-        bgMusic.volume = 0.45;
+        // --- MOBILE HAMBURGER MENU TOGGLE ---
+        window.toggleMobileMenu = (forceClose = false) => {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (!drawer || !icon) return;
+
+            const isHidden = drawer.classList.contains('hidden');
+            if (forceClose || !isHidden) {
+                drawer.classList.add('hidden');
+                drawer.classList.remove('flex');
+                icon.className = 'ph-bold ph-list text-2xl';
+            } else {
+                drawer.classList.remove('hidden');
+                drawer.classList.add('flex');
+                icon.className = 'ph-bold ph-x text-2xl text-orange-400';
+            }
+        };
         
         // --- CUSTOM MODALS & TOASTS ---
         window.showToast = (msg, type = 'info') => {
@@ -874,35 +969,115 @@
             } else if (val.options && typeof val.options === 'object') {
                 options = Object.values(val.options);
             } else {
-                options = [val.optA, val.optB, val.optC, val.optD].filter(v => v !== undefined && v !== null && String(v).trim() !== '');
+                options = [val.optA, val.optB, val.optC, val.optD].filter(Boolean);
             }
-            const correctIdx = val.correct !== undefined ? parseInt(val.correct, 10) : (val.correctIndex !== undefined ? parseInt(val.correctIndex, 10) : 0);
+            const correct = val.correct !== undefined ? Number(val.correct) : (val.correctIndex !== undefined ? Number(val.correctIndex) : 0);
+            const timer = parseInt(val.timer, 10) || 15;
             return {
                 id: String(firebaseKey),
-                question: val.question || 'Untitled Question',
+                question: String(val.question || 'Untitled Question'),
                 options: options,
-                correct: isNaN(correctIdx) ? 0 : correctIdx,
-                timer: parseInt(val.timer, 10) || 15,
+                correct: correct,
+                timer: timer,
                 timestamp: val.timestamp || 0
             };
         }
 
-        // --- ENTRY & AUDIO PLAY ---
+        // --- ONE-TIME ORIGINAL DISCLAIMER & ENTRY INITIALIZATION ---
         window.enterExperience = () => {
-            try {
-                bgMusic.play().catch(e => console.warn("Audio play blocked:", e));
-            } catch(err) {}
-
+            localStorage.setItem(DISCLAIMER_STORAGE_KEY, 'true');
             const entryView = document.getElementById('view-entry');
             if (entryView) {
                 entryView.classList.add('opacity-0');
                 setTimeout(() => {
-                    entryView.style.display = 'none';
-                    checkLoginState();
-                }, 300);
-            } else {
+                    entryView.classList.add('hidden');
+                    entryView.classList.remove('flex');
+                    if (!currentUser) {
+                        checkLoginState();
+                    }
+                }, 250);
+            } else if (!currentUser) {
                 checkLoginState();
             }
+        };
+
+        window.openDisclaimerModal = () => {
+            const entryView = document.getElementById('view-entry');
+            if (entryView) {
+                entryView.classList.remove('hidden', 'opacity-0');
+                entryView.classList.add('flex');
+            }
+        };
+
+        // Check on page load if the user already accepted the one-time disclaimer
+        function initAppEntry() {
+            const entryView = document.getElementById('view-entry');
+            if (localStorage.getItem(DISCLAIMER_STORAGE_KEY) === 'true') {
+                if (entryView) {
+                    entryView.classList.add('hidden');
+                    entryView.classList.remove('flex');
+                }
+                checkLoginState();
+            } else {
+                if (entryView) {
+                    entryView.classList.remove('hidden', 'opacity-0');
+                    entryView.classList.add('flex');
+                }
+            }
+        }
+
+        // Live S12 Countdown Listener
+        onValue(ref(db, 'settings/s12Countdown'), (snap) => {
+            clearInterval(s12Interval);
+            const el = document.getElementById('s12-countdown-display');
+            if (!el) return;
+            const targetDateStr = snap.val();
+            if (!targetDateStr) {
+                el.className = "text-xs text-gray-400 mt-1";
+                el.innerText = "Countdown will start here on official date";
+                return;
+            }
+            const targetTime = new Date(targetDateStr).getTime();
+            if (isNaN(targetTime)) {
+                el.className = "text-xs text-gray-400 mt-1";
+                el.innerText = "Countdown will start here on official date";
+                return;
+            }
+            const updateTick = () => {
+                const diff = targetTime - Date.now();
+                if (diff <= 0) {
+                    el.className = "text-xs sm:text-sm font-bold text-green-400 mt-1 animate-pulse";
+                    el.innerText = "S12 IS NOW LIVE!";
+                    clearInterval(s12Interval);
+                    return;
+                }
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const m = Math.floor((diff / 1000 / 60) % 60);
+                const s = Math.floor((diff / 1000) % 60);
+                el.className = "text-xs sm:text-sm font-mono font-bold text-orange-300 mt-1 tracking-wider";
+                el.innerText = `${d}d : ${String(h).padStart(2, '0')}h : ${String(m).padStart(2, '0')}m : ${String(s).padStart(2, '0')}s`;
+            };
+            updateTick();
+            s12Interval = setInterval(updateTick, 1000);
+        });
+
+        window.saveS12Countdown = () => {
+            const val = document.getElementById('adm-s12-date').value;
+            if (!val) {
+                showToast("Please pick a valid date and time.", "warning");
+                return;
+            }
+            set(ref(db, 'settings/s12Countdown'), val).then(() => {
+                showToast("S12 Countdown date updated!", "success");
+            });
+        };
+
+        window.clearS12Countdown = () => {
+            remove(ref(db, 'settings/s12Countdown')).then(() => {
+                document.getElementById('adm-s12-date').value = '';
+                showToast("S12 Countdown reset to default text.", "info");
+            });
         };
 
         function checkLoginState() {
@@ -955,9 +1130,11 @@
             
             const sec = document.getElementById(`tab-${tabId}`);
             if (sec) sec.classList.add('active');
-            const navBtn = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
-            if (navBtn) navBtn.classList.add('active');
+            document.querySelectorAll(`.nav-item[data-tab="${tabId}"]`).forEach(btn => btn.classList.add('active'));
             
+            // Automatically close mobile hamburger drawer when a tab is selected
+            if (window.toggleMobileMenu) window.toggleMobileMenu(true);
+
             if(tabId === 'quiz') {
                 initQuizPlay();
             } else {
@@ -1028,6 +1205,8 @@
             const userId = String(currentUser.id);
             localStorage.setItem('sigma_fan_uid', userId);
             document.getElementById('nav-user-id').innerText = currentUser.discordId;
+            const mobileUserEl = document.getElementById('mobile-nav-user-id');
+            if (mobileUserEl) mobileUserEl.innerText = currentUser.discordId;
             document.getElementById('user-score-display').innerText = currentUser.score || 0;
             switchView('view-dashboard');
             updateQuestProgress();
@@ -1071,6 +1250,8 @@
                 currentUser.answered = { ...(currentUser.answered || {}), ...remoteAnswered };
 
                 document.getElementById('nav-user-id').innerText = currentUser.discordId;
+                const mobileUserEl2 = document.getElementById('mobile-nav-user-id');
+                if (mobileUserEl2) mobileUserEl2.innerText = currentUser.discordId;
                 document.getElementById('user-score-display').innerText = currentUser.score;
                 updateQuestProgress();
 
@@ -1082,6 +1263,7 @@
 
         window.logout = () => {
             clearInterval(quizTimerInterval);
+            if (window.toggleMobileMenu) window.toggleMobileMenu(true);
             localStorage.removeItem('sigma_fan_uid');
             currentUser = null;
             document.getElementById('login-discord').value = '';
@@ -1871,6 +2053,9 @@
             document.getElementById('admin-login-modal').classList.remove('hidden');
             document.getElementById('admin-login-modal').classList.add('flex');
         }
+
+        // Start application entry check on load
+        initAppEntry();
     </script>
 </body>
 </html>
